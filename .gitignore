@@ -1,0 +1,17 @@
+*~
+*.swp
+*.bmp
+# PhotoScape
+*.db
+Originals/
+# MPLAB X IDE
+build/
+dist/
+private/ 
+.generated_files/
+*.log
+*.inx
+# these files are generated
+*.mk
+*.bash
+*.properties

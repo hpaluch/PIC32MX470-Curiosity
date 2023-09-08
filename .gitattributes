@@ -1,0 +1,7 @@
+# .gitattributes
+# always use Unix LF
+.gitattributes eol=lf
+.gitignore eol=lf
+Makefile text eol=lf
+*.c text eol=lf
+*.h text eol=lf
