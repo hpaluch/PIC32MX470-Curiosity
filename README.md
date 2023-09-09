@@ -71,7 +71,7 @@ manual [PIC32MX470 Curiosity Development Board User’s Guide][DS70005283B].
   of jitter
 
 | PIC32MX Pin | PIC32MX Function | Peripheral | Active level (0/1) |
-| --- | --- | --- | --- |
+| ---: | --- | --- | --- |
 | 7 | /MCLR | RESET Button /MCLR (between USB connectors) | 0 |
 | 54 | RD6   | Switch S1 | 0 |
 | 64 | RE4 | LED1 red | 1 |
