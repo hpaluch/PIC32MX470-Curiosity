@@ -70,6 +70,11 @@ manual [PIC32MX470 Curiosity Development Board User’s Guide][DS70005283B].
   used when working with Audio Codec that is sensitive to any kind
   of jitter
 
+To see known peripheral you can also look at Board Support Package (BSP)
+- at: https://github.com/Microchip-MPLAB-Harmony/bsp/blob/master/boards/pic32mx470_curiosity/config/bsp.py
+
+Here is my curated list:
+
 | PIC32MX Pin | PIC32MX Function | Peripheral | Active level (0/1) |
 | ---: | --- | --- | --- |
 | 7 | /MCLR | RESET Button /MCLR (between USB connectors) | 0 |
@@ -82,6 +87,50 @@ manual [PIC32MX470 Curiosity Development Board User’s Guide][DS70005283B].
 | 14 | RB2 | RGB LED4 - blue | 0 |
 | 39 | OSC1 | 20 MHz crystal - CPU osc input | - |
 | 40 | OSC2 | 20 MHz crystal - CPU osc output | - |
+
+# Software requirements
+
+Currently all project use:
+- MPLAB X IDE v6.15 (latest version as of Sep 2023)
+- XC32 v4.30 (latest version as of Sep 2023)
+- MCC Harmony generator
+
+# Project List
+
+## Project1 - 20 MHz Oscillator test
+
+Work in Progress (WIP):
+
+The Curiosity board contains high-precision 20 Mhz resonator. It is required for USB
+support and other high-precision timing projects.
+
+This project will test if frequency of oscillator is correct and also blink several LEDs
+using:
+1. Core Timer interrupt (to verify that Timer interrupts works). It rotates colors
+   on RGB LED using sequence: Off, Red, Green, Blue  - change every 1 s
+2. Using Detail in main loop (to verify that main program thread is working properly - for example
+   it is not clogged with interrupt storm). It uses `CORETIMER_DelayMs(500);` that polls 
+   Core Timer (without interrupt). It rotated LED1, LED2, LED3 in sequence: Off, LED1, LED2, LED3
+   every 0.5 s (2 times faster that RGB LED, however the actual rate is slightly over 0.5s, because
+   we don't compensate for code overhead).
+
+
+This project was generated using:
+- MCC Harmony plugin
+- Optional packages: `Harmony 3 - Core` -> `BSP` (Board Support Package)
+  - according to URL: 
+    - at: https://github.com/Microchip-MPLAB-Harmony/bsp/blob/master/boards/pic32mx470_curiosity/config/bsp.py
+  - this BSP should include our `MX470 Curiosity` board.
+
+Additional I/O:
+
+| CPU Pin | Name | Function | Board Pin |
+| ---: | --- | --- | --- |
+| 29 | RPB14 | OC1 | J5 Pin 16 - MikroBUS1 - Pin PWM |
+
+
+TODO: Finish PWM for oscillator test.
+
 
 [MIPS32 M4K DTS]: https://s3-eu-west-1.amazonaws.com/downloads-mips/documents/MD00247-2B-M4K-DTS-02.01.pdf
 [MIPS32 BIS]: https://s3-eu-west-1.amazonaws.com/downloads-mips/documents/MD00086-2B-MIPS32BIS-AFP-05.04.pdf

@@ -3,7 +3,8 @@
 .gitattributes eol=lf
 .gitignore eol=lf
 Makefile text eol=lf
-*.c text eol=lf
-*.h text eol=lf
+*.yml text eol=lf
+*.c text eol=crlf
+*.h text eol=crlf
 # GIT LFS
 *.jpg filter=lfs diff=lfs merge=lfs -text
