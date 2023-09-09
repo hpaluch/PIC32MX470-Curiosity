@@ -95,7 +95,11 @@ Currently all project use:
 - XC32 v4.30 (latest version as of Sep 2023)
 - MCC Harmony generator
 
+Common project properties:
+- on TRAP, RGB LED should permanently lit RED, and all 3 LED1, LED2 and LED3 should be lit.
+
 # Project List
+
 
 ## Project1 - 20 MHz Oscillator test
 
