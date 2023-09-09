@@ -30,7 +30,7 @@ Most important links regarding Curiosity board:
 Links for CPU [PIC32MX470F512H][PIC32MX470F512H]
 - datasheet [PIC32MX470F512H - DS60001185H][DS60001185H]
 - errata - IMPORTANT!: [DS80000574][DS80000574]
-- it is MIP32 M4K CPU CORE
+- it is `MIPS32(R) M4K` CPU Core.
   - [MIPS32 M4K Manual][MIPS32 M4K Manual] from mips.com
   - [MIPS32 M4K Core Datasheet][MIPS32 M4K DTS] from mips.com
   - [MIPS32 Instruction Set][MIPS32 BIS] from mips.com
@@ -42,10 +42,10 @@ Ensure that Jumpers are in these default positions -
 see [PIC32MX470 Curiosity Development Board User’s Guide][DS70005283B]
 for details:
 
-Power Jumper J8:
+Power Jumper `J8`:
 - middle position, left label `PKOB` (PicKit on board debugger)
 
-External/internal Debugger Jumper J2:
+External/internal Debugger Jumper `J2`:
 - Pins 1-2 and 3-4 shorted (using single rectangular Jumper)
 
 Connecting board to USB:
@@ -53,30 +53,35 @@ Connecting board to USB:
 - it is located at Left BOTTOM of board (!)
 - there is also white label `USB DEBUG`
 - NOTE: That Left-top micro-USB connector is for USB connection
-  to PIC32MX! (that can work both as Host and/or as Device)
+  to PIC32MX! (that can work both as Host and/or as Device) using recent
+  USB OTG (On-The-Go) protocol.
 
 # Available peripherals
 
 Extracted from
 manual [PIC32MX470 Curiosity Development Board User’s Guide][DS70005283B].
 
-- CPU is U9 is `PIC32MX470F512H-120/PT`,
+- CPU is `U9` part `PIC32MX470F512H-120/PT`,
   - package: code `PT` => 64-pin, TQFP (visible pins)
+  - Note: it is important to know proper package when using
+    Pin-Manager tool in MCC Harmony tool
 - X2 20 MHz crystal oscillator -  this precision clock source
-  is required when using USB on PIC32MX CPU
+  is required when using USB on PIC32MX CPU and should be also
+  used when working with Audio Codec that is sensitive to any kind
+  of jitter
 
-| PIC32MX Pin | PIC32MX Function | Peripheral |
-| --- | --- | --- |
-| 7 | /MCLR | RESET Button /MCLR (between USB connectors) |
-| 54 | RD6   | Switch S1 |
-| 64 | RE4 | LED1 red - active high |
-| 2 | RE6 | LED2 yellow - active high |
-| 3 | RE7 | LED3 green - active high |
-| 23 | RB10 | RGB LED4 - red - active low |
-| 13 | RB3 | RGB LED4- green - active low |
-| 14 | RB2 | RGB LED4 - blue - active low |
-| 39 | OSC1 | 20 MHz crystal - CPU osc input |
-| 40 | OSC2 | 20 MHz crystal - CPU osc output | 
+| PIC32MX Pin | PIC32MX Function | Peripheral | Active level (0/1) |
+| --- | --- | --- | --- |
+| 7 | /MCLR | RESET Button /MCLR (between USB connectors) | 0 |
+| 54 | RD6   | Switch S1 | 0 |
+| 64 | RE4 | LED1 red | 1 |
+| 2 | RE6 | LED2 yellow | 1 |
+| 3 | RE7 | LED3 green | 1 |
+| 23 | RB10 | RGB LED4 - red | 0 |
+| 13 | RB3 | RGB LED4- green | 0 |
+| 14 | RB2 | RGB LED4 - blue | 0 |
+| 39 | OSC1 | 20 MHz crystal - CPU osc input | - |
+| 40 | OSC2 | 20 MHz crystal - CPU osc output | - |
 
 [MIPS32 M4K DTS]: https://s3-eu-west-1.amazonaws.com/downloads-mips/documents/MD00247-2B-M4K-DTS-02.01.pdf
 [MIPS32 BIS]: https://s3-eu-west-1.amazonaws.com/downloads-mips/documents/MD00086-2B-MIPS32BIS-AFP-05.04.pdf
