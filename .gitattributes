@@ -5,3 +5,5 @@
 Makefile text eol=lf
 *.c text eol=lf
 *.h text eol=lf
+# GIT LFS
+*.jpg filter=lfs diff=lfs merge=lfs -text

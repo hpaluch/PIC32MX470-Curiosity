@@ -1,9 +1,16 @@
 # Getting started with PIC32MX470-Curiosity
 
 I recently acquired:
+
 * [PIC32MX470-Curiosity DM320103][DM320103] development board
+
+  ![PIC32MX470-Curiosity DM320103](assets/pic32mx470-curiosity-1280w.jpg)
+
 * [PIC32 Audio Codec Daughter Board WM8904 AC328904][AC328904] codec
   board that uses pair of connectors known as X32
+
+  ![PIC32 Audio Codec Daughter Board WM8904 ](assets/pic32-audio-codec-1024w.jpg)
+
 So I will have lot of fun playing with Codec, DSPs...
 
 > WARNING! Official recommended codec for this card 
