@@ -175,6 +175,8 @@ void SYS_Initialize ( void* data )
 
     CORETIMER_Initialize();
 	BSP_Initialize();
+    TMR2_Initialize();
+
     OCMP1_Initialize();
 
 

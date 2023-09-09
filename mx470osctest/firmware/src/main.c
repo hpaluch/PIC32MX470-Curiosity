@@ -70,6 +70,7 @@ int main ( void )
     CORETIMER_CallbackSet(CORETIMER_EventHandler,(uintptr_t)NULL);
     CORETIMER_Start();
     OCMP1_Enable(); // enable PWM toggle, mikroBUS 1, pin PWM
+    TMR2_Start(); // Timer2 is base for PWM (OC1)
     while ( true )
     {
         // rotate: OFF -> LED1 -> LED2 -> LED3 at 0.5s rate

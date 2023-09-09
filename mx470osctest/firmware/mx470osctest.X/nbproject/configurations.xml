@@ -26,6 +26,10 @@
               <itemPath>../src/config/pkobosctest/peripheral/ocmp/plib_ocmp_common.h</itemPath>
               <itemPath>../src/config/pkobosctest/peripheral/ocmp/plib_ocmp1.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="tmr" displayName="tmr" projectFiles="true">
+              <itemPath>../src/config/pkobosctest/peripheral/tmr/plib_tmr2.h</itemPath>
+              <itemPath>../src/config/pkobosctest/peripheral/tmr/plib_tmr_common.h</itemPath>
+            </logicalFolder>
           </logicalFolder>
           <itemPath>../src/config/pkobosctest/device.h</itemPath>
           <itemPath>../src/config/pkobosctest/interrupts.h</itemPath>
@@ -66,6 +70,9 @@
             </logicalFolder>
             <logicalFolder name="ocmp" displayName="ocmp" projectFiles="true">
               <itemPath>../src/config/pkobosctest/peripheral/ocmp/plib_ocmp1.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="tmr" displayName="tmr" projectFiles="true">
+              <itemPath>../src/config/pkobosctest/peripheral/tmr/plib_tmr2.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="stdio" displayName="stdio" projectFiles="true">
@@ -131,6 +138,7 @@
       <C32>
         <property key="additional-warnings" value="true"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
@@ -187,6 +195,7 @@
         <property key="additional-options-use-response-files" value="false"/>
         <property key="additional-options-write-sla" value="false"/>
         <property key="allocate-dinit" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="code-dinit" value="false"/>
         <property key="ebase-addr" value=""/>
         <property key="enable-check-sections" value="false"/>
@@ -226,6 +235,7 @@
       <C32CPP>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="check-new" value="false"/>
         <property key="eh-specs" value="true"/>
         <property key="enable-app-io" value="false"/>
@@ -276,6 +286,7 @@
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
+        <property key="firmware.download.all" value="false"/>
         <property key="lastid" value=""/>
         <property key="memories.configurationmemory" value="true"/>
         <property key="memories.dataflash" value="true"/>
