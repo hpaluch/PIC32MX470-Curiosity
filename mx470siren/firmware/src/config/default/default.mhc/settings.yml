@@ -1,0 +1,14 @@
+format_version: v1.0
+configName: default
+folderName: mx470siren
+frameworkPath: C:\projects\pic32mx-harmony\harmony-repo
+processor: PIC32MX470F512H
+projectName: mx470siren
+settings:
+  PackageFilter: ''
+  FORCE_OPTIMIZATION: 'false'
+  GENERATE_BACKUP: 'true'
+  TRUSTZONE: 'false'
+  CMSISPath: dev_packs\arm\CMSIS\5.8.0
+  MERGE_STRATEGY: USER_ALL
+  DFPPath: dev_packs\Microchip\PIC32MX_DFP\1.5.259\atdf\PIC32MX470F512H.atdf

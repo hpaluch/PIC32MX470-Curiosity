@@ -188,6 +188,9 @@ for WM8904 on:
 - https://github.com/Microchip-MPLAB-Harmony/audio/tree/master/driver/codec/WM8904
 - and here is even Example for SAM Atmel: [Harmony WM8904 Example][Harmony WM8904 Example]
 
+This does not work (probably PIC470MX not supported):
+- Device Resources -> Libraries -> Harmony -> Audio -> Templates -> WM8904 Codec
+
 
 [Harmony WM8904 Example]: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
 [WM8904DS]: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf

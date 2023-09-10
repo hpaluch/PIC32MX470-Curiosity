@@ -1,6 +1,7 @@
 *~
 *.swp
 *.bmp
+*.bak*
 # PhotoScape
 *.db
 Originals/
