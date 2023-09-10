@@ -158,18 +158,20 @@ using 3.3V TTL logic.
 The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card.
 
 Status: Work in Progress
-- created bare skeleton following https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start + many
+- finished import of skeleton from: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start + many
   fixes.
 - there is one task, that copies S1 button state to LED3
 - there is Debug console output on UART1 (see below for more info)
 - on startup it produces output:
   ```
-  APP_Tasks() Initialized.
-  APP_S1LED_Tasks() Initialized.
+  Starting ../src/app.c:143 - Codec App v1.00
+  ../src/app.c:148 Finished APP_Initialize().
+  ../src/app.c:171 Initializing codec...
+  ../src../src/app.c:189 OK: Codec initialized
+  ../src/app.c:202 Setting Up codec buffers...
+  ../src/app.c:216 Playing sound (Buffer ping-pong)...
   ```
-- first line is from 1st application that will control Audio Codec in future `mx470siren/firmware/src/app.c`
-- second line is from 2nd application that copies S1 button state to LED3 - source
-  is under  `mx470siren/firmware/src/app_s1led.c`
+- the wrong src line is probably from overflown ring buffer... or some kind of thread race with other app
 
 Required hardware:
 * [PIC32MX470-Curiosity DM320103][DM320103] development board
