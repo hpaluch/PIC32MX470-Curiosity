@@ -111,8 +111,11 @@ void I2S2_Initialize ( void )
 uint32_t I2S2_LRCLK_Get(void)
 {
     // for I2S format, will sync on low to high transition
+#if 0    
     volatile uint32_t ret = ((PORTA >> 0) & 0x1);
     return ret;
+#endif
+    return 0;
 }
 
 static uint32_t _calcRefclock(uint32_t sysclk, uint32_t rodivInt, uint32_t rotrimInt)

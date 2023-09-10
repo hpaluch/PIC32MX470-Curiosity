@@ -62,6 +62,15 @@
 // *****************************************************************************
 
 
+/*** Macros for GPIO_RD0 pin ***/
+#define GPIO_RD0_Set()               (LATDSET = (1<<0))
+#define GPIO_RD0_Clear()             (LATDCLR = (1<<0))
+#define GPIO_RD0_Toggle()            (LATDINV= (1<<0))
+#define GPIO_RD0_OutputEnable()      (TRISDCLR = (1<<0))
+#define GPIO_RD0_InputEnable()       (TRISDSET = (1<<0))
+#define GPIO_RD0_Get()               ((PORTD >> 0) & 0x1)
+#define GPIO_RD0_PIN                  GPIO_PIN_RD0
+
 
 // *****************************************************************************
 /* GPIO Port

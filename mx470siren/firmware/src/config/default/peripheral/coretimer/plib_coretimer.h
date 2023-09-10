@@ -1,22 +1,21 @@
 /*******************************************************************************
- System Interrupts File
+  Interface definition of Core Timer PLIB.
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    interrupt.h
+    plib_coretimer.h
 
   Summary:
-    Interrupt vectors mapping
+    Interface definition of the Core Timer Plib .
 
   Description:
-    This file contains declarations of device vectors used by Harmony 3
- *******************************************************************************/
+    This file defines the interface for the Core Timer Plib.
+*******************************************************************************/
 
-// DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2019 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -36,32 +35,44 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
-// DOM-IGNORE-END
+*******************************************************************************/
 
-#ifndef INTERRUPTS_H
-#define INTERRUPTS_H
+#ifndef PLIB_CORETIMER_H    // Guards against multiple inclusion
+#define PLIB_CORETIMER_H
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: Included Files
-// *****************************************************************************
-// *****************************************************************************
 #include <stdint.h>
+#include <stdbool.h>
+
+#ifdef __cplusplus // Provide C++ Compatibility
+    extern "C" {
+#endif
+
+#define CORE_TIMER_FREQUENCY    (10000000U)
+
+
+typedef void (*CORETIMER_CALLBACK)(uint32_t status, uintptr_t context);
+
+typedef struct
+{
+    CORETIMER_CALLBACK  callback;
+    uintptr_t           context;
+} CORETIMER_OBJECT ;
+
+void CORETIMER_Initialize(void);
+void CORETIMER_CallbackSet ( CORETIMER_CALLBACK callback, uintptr_t context );
+uint32_t CORETIMER_FrequencyGet (void);
+void CORETIMER_Start(void);
+void CORETIMER_Stop(void);
+uint32_t CORETIMER_CounterGet(void);
+void CORETIMER_CompareSet(uint32_t compare);
 
 
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: Handler Routines
-// *****************************************************************************
-// *****************************************************************************
+void CORETIMER_DelayMs (uint32_t delay_ms);
+void CORETIMER_DelayUs (uint32_t delay_us);
 
-void CORE_TIMER_InterruptHandler( void );
-void I2C_2_InterruptHandler( void );
-void DMA_0_InterruptHandler( void );
-void DMA_1_InterruptHandler( void );
+#ifdef __cplusplus // Provide C++ Compatibility
+ }
+#endif
 
-
-
-#endif // INTERRUPTS_H
+#endif

@@ -48,19 +48,23 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "bsp/bsp.h"
-#include "peripheral/i2c/master/plib_i2c2_master.h"
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/gpio/plib_gpio.h"
 #include "peripheral/evic/plib_evic.h"
 #include "peripheral/dmac/plib_dmac.h"
 #include "audio/driver/i2s/drv_i2s.h"
-#include "audio/driver/codec/wm8904/drv_wm8904.h"
+#include "driver/i2c/drv_i2c.h"
+#include "system/time/sys_time.h"
+#include "peripheral/coretimer/plib_coretimer.h"
+#include "bsp/bsp.h"
+#include "peripheral/i2c/master/plib_i2c2_master.h"
 #include "audio/peripheral/i2s/plib_i2s2.h"
+#include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
+#include "system/ports/sys_ports.h"
+#include "system/dma/sys_dma.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
-#include "driver/i2c/drv_i2c.h"
 #include "app.h"
 
 
@@ -198,6 +202,7 @@ typedef struct
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
 
+    SYS_MODULE_OBJ  sysTime;
     SYS_MODULE_OBJ drvwm8904Codec0;
 
 } SYSTEM_OBJECTS;

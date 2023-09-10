@@ -172,16 +172,16 @@ Important information on Audio Codec Daughter card:
 - codec [WM8904][WM8904] and [WM8904 Datasheet][WM8904DS]
 
 
-| Curiosity Pin J14 | Curiosity Signal J14 | Board signal | WM8904 Pin | WM8904 Signal |
-| ---: | --- | --- | ---: | --- |
-| 6 | RPD0/INT0 | `UART1_RTS#` | 1 | IRQ/GPIO1 |
-| 7 | RPF5/SCL2 | SCL1 | 2 | SCL |
-| 9 | RPF4/SDA2 | SDA1 | 3 | SDA |
-| 10 | RPG9/SS2 | `I2S1_RCL` | 30 | LRCLK |
-| 11 | RPG7/SDI2 | `I2S1_MISO` | 31 | ADCDAT |
-| 12 | RPG6/SCK2 | `I2S1_BCLK` | 29 | BCLK |
-| 13 | RPG8/SDO2 | `I2S1_MOSI` | 32 | DACDAT |
-| 14 | RPB8/REFCLKO | `I2S1_MCLK` | MCLK |
+| CPU pin | Curiosity Pin J14 | Curiosity Signal J14 | Board signal | WM8904 Pin | WM8904 Signal |
+| ---: | ---: | --- | --- | ---: | --- |
+| X | 6 | RPD0/INT0 | `UART1_RTS#` | 1 | IRQ/GPIO1 |
+| 32 | 7 | RPF5/SCL2 | SCL1 | 2 | SCL |
+| 31 | 9 | RPF4/SDA2 | SDA1 | 3 | SDA |
+| 8 | 10 | RPG9/SS2 (out) | `I2S1_RCL` | 30 | LRCLK |
+| 5 | 11 | RPG7/SDI2 | `I2S1_MISO` | 31 | ADCDAT |
+| 4 | 12 | RPG6/SCK2 | `I2S1_BCLK` | 29 | BCLK |
+| 6 | 13 | RPG8/SDO2 | `I2S1_MOSI` | 32 | DACDAT |
+| 21 | 14 | RPB8/REFCLKO | `I2S1_MCLK` | MCLK |
 
 Regarding MCC Harmony code generator - there is Audio Codec Library
 for WM8904 on:
@@ -190,6 +190,35 @@ for WM8904 on:
 
 This does not work (probably PIC470MX not supported):
 - Device Resources -> Libraries -> Harmony -> Audio -> Templates -> WM8904 Codec
+
+Tips:
+
+How to resolve error - missing include `system/dma/sys_dma.h`
+- invoke MCC
+- select `Project Graph` tab
+- click on `Core / Harmony Core Service`
+- Enable checkbox `Enable System DMA`
+- click on `Generate ...`
+
+Once you resolve this error you will get another one related to `SYS_TIME...`
+- to fix it again invoke MCC
+- add Device Resources -> Libraries -> Harmony -> System
+  Services -> TIME
+- you need to also add TMR provider
+- so also add Device Resources -> Libraies ->
+  Harmony -> Peripherals -> CORE TIMER ->  CORE TIEMR
+  - keep Comapre period 1ms (not sure if it is not too much)
+  - Do NOT touch any other settings! They will be modified automatically in next step!
+- now on Project Graph  connect CORE TIMER -> TMR to TIME System Service -> TMR
+
+This time I got following error:
+```
+../src/config/default/audio/peripheral/i2s/plib_i2s2.c: In function 'I2S2_LRCLK_Get':
+../src/config/default/audio/peripheral/i2s/plib_i2s2.c:114:31: \
+  error: 'PORTA' undeclared (first use in this function); did you mean 'PORTG'?
+     volatile uint32_t ret = ((PORTA >> 0) & 0x1);
+```
+
 
 
 [Harmony WM8904 Example]: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
