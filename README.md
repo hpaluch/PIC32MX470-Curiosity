@@ -153,7 +153,45 @@ Additional I/O:
 So on MikroBUS 1 PWM pin there should be rectangular 1 MHz frequency (oscillator 20 MHz / 20 )
 using 3.3V TTL logic.
 
+## Project No. 2 - Siren
 
+The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card.
+
+Status: Work in Progress
+
+Required hardware:
+* [PIC32MX470-Curiosity DM320103][DM320103] development board
+* [PIC32 Audio Codec Daughter Board WM8904 AC328904][AC328904] inserted on X32 connector of
+  development board
+
+NOTE: All Jumpers on Audio card (J6,J7,J8,J9) should be on right position
+(where is small white circle) to use I2S1 signals (only these are connected on
+MX470 Curiosity board)
+ 
+Important information on Audio Codec Daughter card:
+- codec [WM8904][WM8904] and [WM8904 Datasheet][WM8904DS]
+
+
+| Curiosity Pin J14 | Curiosity Signal J14 | Board signal | WM8904 Pin | WM8904 Signal |
+| ---: | --- | --- | ---: | --- |
+| 6 | RPD0/INT0 | `UART1_RTS#` | 1 | IRQ/GPIO1 |
+| 7 | RPF5/SCL2 | SCL1 | 2 | SCL |
+| 9 | RPF4/SDA2 | SDA1 | 3 | SDA |
+| 10 | RPG9/SS2 | `I2S1_RCL` | 30 | LRCLK |
+| 11 | RPG7/SDI2 | `I2S1_MISO` | 31 | ADCDAT |
+| 12 | RPG6/SCK2 | `I2S1_BCLK` | 29 | BCLK |
+| 13 | RPG8/SDO2 | `I2S1_MOSI` | 32 | DACDAT |
+| 14 | RPB8/REFCLKO | `I2S1_MCLK` | MCLK |
+
+Regarding MCC Harmony code generator - there is Audio Codec Library
+for WM8904 on:
+- https://github.com/Microchip-MPLAB-Harmony/audio/tree/master/driver/codec/WM8904
+- and here is even Example for SAM Atmel: [Harmony WM8904 Example][Harmony WM8904 Example]
+
+
+[Harmony WM8904 Example]: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
+[WM8904DS]: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf
+[WM8904]: https://www.cirrus.com/products/wm8904/ 
 [MIPS32 M4K DTS]: https://s3-eu-west-1.amazonaws.com/downloads-mips/documents/MD00247-2B-M4K-DTS-02.01.pdf
 [MIPS32 BIS]: https://s3-eu-west-1.amazonaws.com/downloads-mips/documents/MD00086-2B-MIPS32BIS-AFP-05.04.pdf
 [MIPS32 QRC]: https://s3-eu-west-1.amazonaws.com/downloads-mips/documents/MD00565-2B-MIPS32-QRC-01.01.pdf
