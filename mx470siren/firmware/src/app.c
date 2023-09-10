@@ -28,12 +28,22 @@
 // *****************************************************************************
 
 #include "app.h"
+// see https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
+#include <math.h>   // for sin & M_PI
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
+
+#define APP_VERSION 100 // 123 = 1.23
+
+// audio buffers
+DRV_I2S_DATA16 __attribute__ ((aligned (32))) 
+    App_Tone_Lookup_Table_tone1[APP_MAX_AUDIO_NUM_SAMPLES];
+DRV_I2S_DATA16 __attribute__ ((aligned (32))) 
+    App_Tone_Lookup_Table_tone2[APP_MAX_AUDIO_NUM_SAMPLES];
 
 // *****************************************************************************
 /* Application Data
@@ -57,9 +67,12 @@ APP_DATA appData;
 // Section: Application Callback Functions
 // *****************************************************************************
 // *****************************************************************************
-
-/* TODO:  Add any necessary callback functions.
-*/
+void _codecTxBufferComplete()
+{
+    //Next State -- after the buffer complete interrupt.
+    appData.state = APP_STATE_CODEC_ADD_BUFFER;    
+    LED2_Toggle();
+}
 
 // *****************************************************************************
 // *****************************************************************************
@@ -67,9 +80,36 @@ APP_DATA appData;
 // *****************************************************************************
 // *****************************************************************************
 
+uint32_t _sineTableInit(DRV_I2S_DATA16* buffer, uint32_t maxBufferSize,
+	uint32_t frequency, uint32_t sampleRate)
+{
+    uint32_t i,j,k, maxNumCycles;
+    uint32_t numSamplesPerCycle;
 
-/* TODO:  Add any necessary local functions.
-*/
+    // generate sine table
+    // # of samples for one cycle, e.g. 48 for 1 kHz @ 48,000 samples/sec   
+    numSamplesPerCycle = sampleRate / frequency;
+    
+    // max # of cycles we can fit in buffer
+    maxNumCycles = maxBufferSize / numSamplesPerCycle; 
+    
+    k = 0;
+    for (j=0; j < maxNumCycles; j++)
+    {
+        for (i=0; i < numSamplesPerCycle; i++)
+        {
+            // radians = degrees × pi / 180°            
+            double radians = (M_PI*(double)(360.0/
+               (double)numSamplesPerCycle)*(double)i)/180.0;
+
+            buffer[i+k].leftData = (int16_t)(0x7FFF*sin(radians));          
+            buffer[i+k].rightData = buffer[i+k].leftData;        
+        }
+        k += numSamplesPerCycle;
+    }
+    
+    return sizeof(DRV_I2S_DATA16)*k;    // return size of filled-in buffer   
+}
 
 
 // *****************************************************************************
@@ -77,6 +117,18 @@ APP_DATA appData;
 // Section: Application Initialization and State Machine Functions
 // *****************************************************************************
 // *****************************************************************************
+void _audioCodecInitialize (AUDIO_CODEC_DATA* codecData)
+{
+    codecData->handle = DRV_HANDLE_INVALID;
+    codecData->context = 0;
+    codecData->bufferHandler = 
+           (DRV_CODEC_BUFFER_EVENT_HANDLER) _codecTxBufferComplete;
+    codecData->txbufferObject1 = (uint8_t *) App_Tone_Lookup_Table_tone1;
+    codecData->txbufferObject2 = (uint8_t *) App_Tone_Lookup_Table_tone2;
+    codecData->bufferSize1 = 0;
+    codecData->bufferSize2 = 0;
+}
+
 
 /*******************************************************************************
   Function:
@@ -85,19 +137,16 @@ APP_DATA appData;
   Remarks:
     See prototype in app.h.
  */
-
 void APP_Initialize ( void )
 {
-    /* Place the App state machine in its initial state. */
-    appData.state = APP_STATE_INIT;
-
-
-
-    /* TODO: Initialize your application's state machine and other
-     * parameters.
-     */
+    SYS_CONSOLE_PRINT("Starting %s:%d - Codec App v%d.%02d\r\n",
+            __FILE__,__LINE__,APP_VERSION/100,APP_VERSION%100);
+    appData.state = APP_STATE_CODEC_OPEN;
+    _audioCodecInitialize (&appData.codecData);
+    appData.frequency = APP_FREQUENCY;      // e.g. 1 kHz
+    appData.pingPong = 1;
+    SYS_CONSOLE_PRINT("%s:%d Finished %s().\r\n",__FILE__,__LINE__,__func__);
 }
-
 
 /******************************************************************************
   Function:
@@ -106,42 +155,130 @@ void APP_Initialize ( void )
   Remarks:
     See prototype in app.h.
  */
-
 void APP_Tasks ( void )
 {
-
-    /* Check the application's current state. */
+    static bool printed = false;
+    
+    // Check the application's current state
     switch ( appData.state )
-    {
-        /* Application's initial state. */
-        case APP_STATE_INIT:
+    {       
+        // Application's initial state 
+        case APP_STATE_CODEC_OPEN:
         {
-            bool appInitialized = true;
-
-
-            if (appInitialized)
-            {
-                SYS_CONSOLE_PRINT("%s() Initialized.\r\n",__func__);
-                appData.state = APP_STATE_SERVICE_TASKS;
+            if(!printed){
+                printed=true;
+                SYS_CONSOLE_PRINT("%s:%d Initializing codec...\r\n",
+                        __FILE__,__LINE__);
             }
-            break;
+            // See if codec is done initializing
+            SYS_STATUS status = DRV_CODEC_Status(sysObjdrvCodec0);
+            if (SYS_STATUS_READY == status)
+            {
+                // This means the driver can now be opened.
+                // Open the driver object to get a handle
+                appData.codecData.handle = DRV_CODEC_Open(DRV_CODEC_INDEX_0, 
+                    DRV_IO_INTENT_WRITE | DRV_IO_INTENT_EXCLUSIVE);       
+                if(appData.codecData.handle != DRV_HANDLE_INVALID)
+                {
+                    // Get sampling rate set up in MHC (e.g. 48000)
+                    appData.sampleRate =
+                        DRV_CODEC_SamplingRateGet(appData.codecData.handle);
+                       
+                    appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
+                    SYS_CONSOLE_PRINT("%s:%d OK: Codec initialized\r\n",
+                            __FILE__,__LINE__);
+                }  else {
+                    SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"%s:%d Code init failed.\r\n",
+                            __FILE__,__LINE__);
+                }          
+            }
         }
-
-        case APP_STATE_SERVICE_TASKS:
+        break;
+        
+        // Set a handler for the audio buffer completion event
+        case APP_STATE_CODEC_SET_BUFFER_HANDLER:
         {
+            SYS_CONSOLE_PRINT("%s:%d Setting Up codec buffers...\r\n",
+                        __FILE__,__LINE__);
+            DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle, 
+                                            appData.codecData.bufferHandler, 
+                                            appData.codecData.context);                                 
+               
+            // Initialize the first buffer with sine wave data
+            appData.codecData.bufferSize1 = _sineTableInit(
+                (DRV_I2S_DATA16*)appData.codecData.txbufferObject1,
+                APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
+				appData.sampleRate);
+                        
+            appData.pingPong = 1;   // indicate buffer 1 to be used first 
 
-            break;
+            SYS_CONSOLE_PRINT("%s:%d Playing sound (Buffer ping-pong)...\r\n",
+                __FILE__,__LINE__);
+            appData.state = APP_STATE_CODEC_ADD_BUFFER;           
         }
+        break;
+       
+        case APP_STATE_CODEC_ADD_BUFFER:
+        {
+            // Will ping-pong back and forth between buffer 1 and 2                      
+            if (appData.pingPong==1)
+            {
+                // hand off first buffer to DMA
+                DRV_CODEC_BufferAddWrite(appData.codecData.handle,
+                    &appData.codecData.writeBufHandle1,
+                    appData.codecData.txbufferObject1,
+                    appData.codecData.bufferSize1);
 
-        /* TODO: implement your application state machine.*/
+                if (appData.codecData.writeBufHandle1 != 
+                    DRV_CODEC_BUFFER_HANDLE_INVALID)
+                {   
+                    // just sent buffer 1 to DMA,
+                    // so fill in buffer 2 for next time
+                    appData.codecData.bufferSize2 = _sineTableInit(
+                        (DRV_I2S_DATA16*)appData.codecData.txbufferObject2,
+                        APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
+						appData.sampleRate);
 
+                    appData.pingPong = 2;		// switch to second buffer
+                    appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
+                }               
+            }
+            else
+            {
+                // hand off second buffer to DMA                
+                DRV_CODEC_BufferAddWrite(appData.codecData.handle,
+                        &appData.codecData.writeBufHandle2, 
+                        appData.codecData.txbufferObject2,
+                        appData.codecData.bufferSize2);
 
-        /* The default state should never be executed. */
+                if (appData.codecData.writeBufHandle2 != 
+                    DRV_CODEC_BUFFER_HANDLE_INVALID)
+                {
+                    // just sent buffer 2 to DMA,
+                    // so fill in buffer 1 for next time
+                    appData.codecData.bufferSize1 = _sineTableInit(
+                        (DRV_I2S_DATA16*)appData.codecData.txbufferObject1,
+                        APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
+						appData.sampleRate);
+             
+                    appData.pingPong = 1;		// back to first buffer
+                    appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
+                }               
+            }                       
+        }
+        break;
+
+        // Audio data Transmission under process, wait for callback
+        case APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE:
+        {
+        }
+        break;
+         
         default:
         {
             /* TODO: Handle error in application's state machine. */
-            break;
         }
+        break;             
     }
 }
 

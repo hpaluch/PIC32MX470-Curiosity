@@ -121,7 +121,7 @@ void APP_S1LED_Tasks ( void )
 
             if (appInitialized)
             {
-                SYS_CONSOLE_PRINT("%s() Initialized.\r\n",__func__);
+                SYS_CONSOLE_PRINT("%s:%d Initialized.\r\n",__FILE__,__LINE__);
                 app_s1ledData.state = APP_S1LED_STATE_SERVICE_TASKS;
             }
             break;

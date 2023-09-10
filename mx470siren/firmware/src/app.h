@@ -47,7 +47,14 @@ extern "C" {
 // Section: Type Definitions
 // *****************************************************************************
 // *****************************************************************************
+// code adapted from: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
+// using APP_ prefix as "namespace" to void collisions.    
+#define APP_MAX_AUDIO_NUM_SAMPLES   9600    // number of samples in buffer   
+#define APP_FREQUENCY               1000    // 1 kHz
 
+// NOTE: DRV_I2S_DATA16; is already defined
+//       in config\default\audio\driver\i2s\drv_i2s_definitions.h 
+    
 // *****************************************************************************
 /* Application states
 
@@ -62,10 +69,10 @@ extern "C" {
 typedef enum
 {
     /* Application's state machine's initial state. */
-    APP_STATE_INIT=0,
-    APP_STATE_SERVICE_TASKS,
-    /* TODO: Define states used by the application state machine. */
-
+    APP_STATE_CODEC_OPEN,
+    APP_STATE_CODEC_SET_BUFFER_HANDLER,
+    APP_STATE_CODEC_ADD_BUFFER,
+    APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE,  
 } APP_STATES;
 
 
@@ -84,11 +91,23 @@ typedef enum
 
 typedef struct
 {
+    DRV_HANDLE handle;
+    DRV_CODEC_BUFFER_HANDLE writeBufHandle1, writeBufHandle2;
+    DRV_CODEC_BUFFER_EVENT_HANDLER bufferHandler;
+    uintptr_t context;
+    uint8_t *txbufferObject1;
+    uint8_t *txbufferObject2;
+    size_t bufferSize1, bufferSize2;
+} AUDIO_CODEC_DATA;
+
+typedef struct
+{
     /* The application's current state */
     APP_STATES state;
-
-    /* TODO: Define any additional data used by the application. */
-
+    uint8_t pingPong;
+    uint32_t sampleRate;
+    uint32_t frequency;
+    AUDIO_CODEC_DATA codecData;
 } APP_DATA;
 
 // *****************************************************************************
