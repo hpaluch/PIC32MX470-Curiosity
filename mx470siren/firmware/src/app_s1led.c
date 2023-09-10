@@ -5,10 +5,10 @@
     Microchip Technology Inc.
 
   File Name:
-    app.c
+    app_s1led.c
 
   Summary:
-    This file contains the source code for the MPLAB Harmony application.
+    Simple application that just copies S1 switch status to LED3
 
   Description:
     This file contains the source code for the MPLAB Harmony application.  It
@@ -27,7 +27,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#include "app.h"
+#include "app_s1led.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -45,12 +45,12 @@
     This structure holds the application's data.
 
   Remarks:
-    This structure should be initialized by the APP_Initialize function.
+    This structure should be initialized by the APP_S1LED_Initialize function.
 
     Application strings and buffers are be defined outside this structure.
 */
 
-APP_DATA appData;
+APP_S1LED_DATA app_s1ledData;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -80,16 +80,16 @@ APP_DATA appData;
 
 /*******************************************************************************
   Function:
-    void APP_Initialize ( void )
+    void APP_S1LED_Initialize ( void )
 
   Remarks:
-    See prototype in app.h.
+    See prototype in app_s1led.h.
  */
 
-void APP_Initialize ( void )
+void APP_S1LED_Initialize ( void )
 {
     /* Place the App state machine in its initial state. */
-    appData.state = APP_STATE_INIT;
+    app_s1ledData.state = APP_S1LED_STATE_INIT;
 
 
 
@@ -101,20 +101,20 @@ void APP_Initialize ( void )
 
 /******************************************************************************
   Function:
-    void APP_Tasks ( void )
+    void APP_S1LED_Tasks ( void )
 
   Remarks:
-    See prototype in app.h.
+    See prototype in app_s1led.h.
  */
 
-void APP_Tasks ( void )
+void APP_S1LED_Tasks ( void )
 {
 
     /* Check the application's current state. */
-    switch ( appData.state )
+    switch ( app_s1ledData.state )
     {
         /* Application's initial state. */
-        case APP_STATE_INIT:
+        case APP_S1LED_STATE_INIT:
         {
             bool appInitialized = true;
 
@@ -122,14 +122,21 @@ void APP_Tasks ( void )
             if (appInitialized)
             {
                 SYS_CONSOLE_PRINT("%s() Initialized.\r\n",__func__);
-                appData.state = APP_STATE_SERVICE_TASKS;
+                app_s1ledData.state = APP_S1LED_STATE_SERVICE_TASKS;
             }
             break;
         }
 
-        case APP_STATE_SERVICE_TASKS:
+        // we always do single task, copy S1 switch to LED3
+        case APP_S1LED_STATE_SERVICE_TASKS:
         {
-
+            // Please note that S1 is shorting to ground, so
+            // open switch = active LED
+            if (SWITCH1_Get()){
+                LED3_On();
+            } else {
+                LED3_Off();
+            }
             break;
         }
 

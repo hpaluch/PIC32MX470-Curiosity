@@ -65,10 +65,21 @@
                 <itemPath>../src/config/default/peripheral/i2c/master/plib_i2c_master_common.h</itemPath>
               </logicalFolder>
             </logicalFolder>
+            <logicalFolder name="uart" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/uart/plib_uart1.h</itemPath>
+              <itemPath>../src/config/default/peripheral/uart/plib_uart_common.h</itemPath>
+            </logicalFolder>
           </logicalFolder>
           <logicalFolder name="system" displayName="system" projectFiles="true">
+            <logicalFolder name="console" displayName="console" projectFiles="true">
+              <itemPath>../src/config/default/system/console/src/sys_console_local.h</itemPath>
+              <itemPath>../src/config/default/system/console/src/sys_console_uart_definitions.h</itemPath>
+              <itemPath>../src/config/default/system/console/sys_console.h</itemPath>
+              <itemPath>../src/config/default/system/console/src/sys_console_uart.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="debug" displayName="debug" projectFiles="true">
               <itemPath>../src/config/default/system/debug/sys_debug.h</itemPath>
+              <itemPath>../src/config/default/system/debug/src/sys_debug_local.h</itemPath>
             </logicalFolder>
             <logicalFolder name="dma" displayName="dma" projectFiles="true">
               <itemPath>../src/config/default/system/dma/sys_dma_mapping.h</itemPath>
@@ -101,6 +112,7 @@
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app.h</itemPath>
+      <itemPath>../src/app_s1led.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -162,11 +174,21 @@
                 <itemPath>../src/config/default/peripheral/i2c/master/plib_i2c2_master.c</itemPath>
               </logicalFolder>
             </logicalFolder>
+            <logicalFolder name="uart" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/uart/plib_uart1.c</itemPath>
+            </logicalFolder>
           </logicalFolder>
           <logicalFolder name="stdio" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/default/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
           <logicalFolder name="system" displayName="system" projectFiles="true">
+            <logicalFolder name="console" displayName="console" projectFiles="true">
+              <itemPath>../src/config/default/system/console/src/sys_console.c</itemPath>
+              <itemPath>../src/config/default/system/console/src/sys_console_uart.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="debug" displayName="debug" projectFiles="true">
+              <itemPath>../src/config/default/system/debug/src/sys_debug.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="dma" displayName="dma" projectFiles="true">
               <itemPath>../src/config/default/system/dma/sys_dma.c</itemPath>
             </logicalFolder>
@@ -185,6 +207,7 @@
       </logicalFolder>
       <itemPath>../src/app.c</itemPath>
       <itemPath>../src/main.c</itemPath>
+      <itemPath>../src/app_s1led.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -201,7 +224,7 @@
         <targetDevice>PIC32MX470F512H</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>PKOBSKDEPlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>4.30</languageToolchainVersion>
         <platform>3</platform>
@@ -239,6 +262,7 @@
       <C32>
         <property key="additional-warnings" value="true"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
@@ -294,6 +318,7 @@
         <property key="additional-options-use-response-files" value="false"/>
         <property key="additional-options-write-sla" value="false"/>
         <property key="allocate-dinit" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="code-dinit" value="false"/>
         <property key="ebase-addr" value=""/>
         <property key="enable-check-sections" value="false"/>
@@ -333,6 +358,7 @@
       <C32CPP>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="check-new" value="false"/>
         <property key="eh-specs" value="true"/>
         <property key="enable-app-io" value="false"/>

@@ -75,6 +75,7 @@ void SYS_Tasks ( void )
     /* Maintain system services */
     
 
+
     /* Maintain Device Drivers */
         DRV_WM8904_Tasks(sysObj.drvwm8904Codec0);
 
@@ -86,6 +87,9 @@ void SYS_Tasks ( void )
     /* Maintain the application's state machine. */
         /* Call Application task APP. */
     APP_Tasks();
+
+    /* Call Application task APP_S1LED. */
+    APP_S1LED_Tasks();
 
 
 

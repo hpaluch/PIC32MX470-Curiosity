@@ -94,6 +94,6 @@ void CLK_Initialize( void )
     PMD2 = 0x3U;
     PMD3 = 0x1f001fU;
     PMD4 = 0x1fU;
-    PMD5 = 0x101011fU;
+    PMD5 = 0x101011eU;
     PMD6 = 0x10001U;
 }

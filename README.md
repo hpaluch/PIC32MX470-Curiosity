@@ -158,6 +158,18 @@ using 3.3V TTL logic.
 The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card.
 
 Status: Work in Progress
+- created bare skeleton following https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start + many
+  fixes.
+- there is one task, that copies S1 button state to LED3
+- there is Debug console output on UART1 (see below for more info)
+- on startup it produces output:
+  ```
+  APP_Tasks() Initialized.
+  APP_S1LED_Tasks() Initialized.
+  ```
+- first line is from 1st application that will control Audio Codec in future `mx470siren/firmware/src/app.c`
+- second line is from 2nd application that copies S1 button state to LED3 - source
+  is under  `mx470siren/firmware/src/app_s1led.c`
 
 Required hardware:
 * [PIC32MX470-Curiosity DM320103][DM320103] development board
@@ -182,6 +194,16 @@ Important information on Audio Codec Daughter card:
 | 4 | 12 | RPG6/SCK2 | `I2S1_BCLK` | 29 | BCLK |
 | 6 | 13 | RPG8/SDO2 | `I2S1_MOSI` | 32 | DACDAT |
 | 21 | 14 | RPB8/REFCLKO | `I2S1_MCLK` | MCLK |
+
+
+Additional Peripherals:
+- RGB LED:
+  - Lits RED on general exception forever
+  - Lits Magenta on bootstrap exception forever
+- Application #2: Copies state of Button S1 to LED3.
+- Console output redirected to UART1, using J5 mikroBus1 connector
+  RX (Input to PIC) and TX (Output from PIC)
+  - connect using any cand of 3.3V TTL UART cable to USB, and set 115200 Baud, 8-bit data, no-parity, no flow-control
 
 Regarding MCC Harmony code generator - there is Audio Codec Library
 for WM8904 on:

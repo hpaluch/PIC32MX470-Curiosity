@@ -120,6 +120,8 @@ void __attribute__((noreturn, weak)) _general_exception_handler ( void )
     exception_code = ((_CP0_GET_CAUSE() & 0x0000007CU) >> 2U);
     exception_address = _CP0_GET_EPC();
 
+    // Lit RGB LED to RED forever
+    RGB_LED_RED_On();RGB_LED_GREEN_Off();RGB_LED_BLUE_Off();
     while (true)
     {
         #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
@@ -146,6 +148,9 @@ void __attribute__((noreturn, weak)) _bootstrap_exception_handler(void)
     Refer to the MIPs Software User's manual */
     exception_code = (_CP0_GET_CAUSE() & 0x0000007CU) >> 2U;
     exception_address = _CP0_GET_EPC();
+
+    // Lit RGB LED to Magenta forever
+    RGB_LED_RED_On();RGB_LED_GREEN_Off();RGB_LED_BLUE_On();
 
     while (true)
     {

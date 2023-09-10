@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    app.h
+    app_s1led.h
 
   Summary:
     This header file provides prototypes and definitions for the application.
@@ -13,13 +13,13 @@
   Description:
     This header file provides function prototypes and data type definitions for
     the application.  Some of these are required by the system (such as the
-    "APP_Initialize" and "APP_Tasks" prototypes) and some of them are only used
-    internally by the application (such as the "APP_STATES" definition).  Both
+    "APP_S1LED_Initialize" and "APP_S1LED_Tasks" prototypes) and some of them are only used
+    internally by the application (such as the "APP_S1LED_STATES" definition).  Both
     are defined here for convenience.
 *******************************************************************************/
 
-#ifndef _APP_H
-#define _APP_H
+#ifndef _APP_S1LED_H
+#define _APP_S1LED_H
 
 // *****************************************************************************
 // *****************************************************************************
@@ -62,11 +62,11 @@ extern "C" {
 typedef enum
 {
     /* Application's state machine's initial state. */
-    APP_STATE_INIT=0,
-    APP_STATE_SERVICE_TASKS,
+    APP_S1LED_STATE_INIT=0,
+    APP_S1LED_STATE_SERVICE_TASKS,
     /* TODO: Define states used by the application state machine. */
 
-} APP_STATES;
+} APP_S1LED_STATES;
 
 
 // *****************************************************************************
@@ -85,11 +85,11 @@ typedef enum
 typedef struct
 {
     /* The application's current state */
-    APP_STATES state;
+    APP_S1LED_STATES state;
 
     /* TODO: Define any additional data used by the application. */
 
-} APP_DATA;
+} APP_S1LED_DATA;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -107,7 +107,7 @@ typedef struct
 
 /*******************************************************************************
   Function:
-    void APP_Initialize ( void )
+    void APP_S1LED_Initialize ( void )
 
   Summary:
      MPLAB Harmony application initialization routine.
@@ -115,7 +115,7 @@ typedef struct
   Description:
     This function initializes the Harmony application.  It places the
     application in its initial state and prepares it to run so that its
-    APP_Tasks function can be called.
+    APP_S1LED_Tasks function can be called.
 
   Precondition:
     All other system initialization routines should be called before calling
@@ -129,19 +129,19 @@ typedef struct
 
   Example:
     <code>
-    APP_Initialize();
+    APP_S1LED_Initialize();
     </code>
 
   Remarks:
     This routine must be called from the SYS_Initialize function.
 */
 
-void APP_Initialize ( void );
+void APP_S1LED_Initialize ( void );
 
 
 /*******************************************************************************
   Function:
-    void APP_Tasks ( void )
+    void APP_S1LED_Tasks ( void )
 
   Summary:
     MPLAB Harmony Demo application tasks function
@@ -162,14 +162,14 @@ void APP_Initialize ( void );
 
   Example:
     <code>
-    APP_Tasks();
+    APP_S1LED_Tasks();
     </code>
 
   Remarks:
     This routine must be called from SYS_Tasks() routine.
  */
 
-void APP_Tasks( void );
+void APP_S1LED_Tasks( void );
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
@@ -177,7 +177,7 @@ void APP_Tasks( void );
 #endif
 //DOM-IGNORE-END
 
-#endif /* _APP_H */
+#endif /* _APP_S1LED_H */
 
 /*******************************************************************************
  End of File
