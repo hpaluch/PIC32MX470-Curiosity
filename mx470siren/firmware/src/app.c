@@ -37,7 +37,10 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define APP_VERSION 100 // 123 = 1.23
+#define APP_VERSION 101 // 123 = 1.23
+
+// like __FILE__ without path, using const to avoid duplication on each use.
+static const char *APP_FILE = "app.c";
 
 // audio buffers
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) 
@@ -139,13 +142,13 @@ void _audioCodecInitialize (AUDIO_CODEC_DATA* codecData)
  */
 void APP_Initialize ( void )
 {
-    SYS_CONSOLE_PRINT("Starting %s:%d - Codec App v%d.%02d\r\n",
-            __FILE__,__LINE__,APP_VERSION/100,APP_VERSION%100);
+    SYS_CONSOLE_PRINT("%s:%d Codec App v%d.%02d\r\n",
+            APP_FILE,__LINE__,APP_VERSION/100,APP_VERSION%100);
     appData.state = APP_STATE_CODEC_OPEN;
     _audioCodecInitialize (&appData.codecData);
     appData.frequency = APP_FREQUENCY;      // e.g. 1 kHz
     appData.pingPong = 1;
-    SYS_CONSOLE_PRINT("%s:%d Finished %s().\r\n",__FILE__,__LINE__,__func__);
+    SYS_CONSOLE_PRINT("%s:%d Done. %s().\r\n", APP_FILE, __LINE__, __func__);
 }
 
 /******************************************************************************
@@ -167,8 +170,8 @@ void APP_Tasks ( void )
         {
             if(!printed){
                 printed=true;
-                SYS_CONSOLE_PRINT("%s:%d Initializing codec...\r\n",
-                        __FILE__,__LINE__);
+                SYS_CONSOLE_PRINT("%s:%d S1\r\n",
+                        APP_FILE,__LINE__);
             }
             // See if codec is done initializing
             SYS_STATUS status = DRV_CODEC_Status(sysObjdrvCodec0);
@@ -185,11 +188,9 @@ void APP_Tasks ( void )
                         DRV_CODEC_SamplingRateGet(appData.codecData.handle);
                        
                     appData.state = APP_STATE_CODEC_SET_BUFFER_HANDLER;
-                    SYS_CONSOLE_PRINT("%s:%d OK: Codec initialized\r\n",
-                            __FILE__,__LINE__);
                 }  else {
-                    SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"%s:%d Code init failed.\r\n",
-                            __FILE__,__LINE__);
+                    SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"%s:%d DRV_CODEC_Open() failed!\r\n",
+                            APP_FILE,__LINE__);
                 }          
             }
         }
@@ -198,8 +199,8 @@ void APP_Tasks ( void )
         // Set a handler for the audio buffer completion event
         case APP_STATE_CODEC_SET_BUFFER_HANDLER:
         {
-            SYS_CONSOLE_PRINT("%s:%d Setting Up codec buffers...\r\n",
-                        __FILE__,__LINE__);
+            SYS_CONSOLE_PRINT("%s:%d S2\r\n",
+                        APP_FILE,__LINE__);
             DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle, 
                                             appData.codecData.bufferHandler, 
                                             appData.codecData.context);                                 
@@ -211,9 +212,6 @@ void APP_Tasks ( void )
 				appData.sampleRate);
                         
             appData.pingPong = 1;   // indicate buffer 1 to be used first 
-
-            SYS_CONSOLE_PRINT("%s:%d Playing sound (Buffer ping-pong)...\r\n",
-                __FILE__,__LINE__);
             appData.state = APP_STATE_CODEC_ADD_BUFFER;           
         }
         break;
@@ -241,7 +239,10 @@ void APP_Tasks ( void )
 
                     appData.pingPong = 2;		// switch to second buffer
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
-                }               
+                } else {
+                    SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"ERROR: %s:%d DRV_CODEC_BufferAddWrite() failed!\r\n",
+                            APP_FILE,__LINE__);                    
+                }
             }
             else
             {
@@ -263,7 +264,10 @@ void APP_Tasks ( void )
              
                     appData.pingPong = 1;		// back to first buffer
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
-                }               
+                } else {
+                    SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"ERROR: %s:%d DRV_CODEC_BufferAddWrite() failed!\r\n",
+                        APP_FILE,__LINE__);
+                }
             }                       
         }
         break;

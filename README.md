@@ -173,6 +173,13 @@ Status: Work in Progress
   ```
 - the wrong src line is probably from overflown ring buffer... or some kind of thread race with other app
 
+Current diagnostics:
+- soldered J9 and J11 on PIC32MC470 Curiosity to get access to second I2C (Codec control)
+  and some SPI2/I2S2 signals (but not all)
+- I2C with Digilent Analog Discovery 2
+- Init sequence: 0x1A write 0x00 ACK, 0xFF ACK,0xFF ACK, STOP
+
+
 Required hardware:
 * [PIC32MX470-Curiosity DM320103][DM320103] development board
 * [PIC32 Audio Codec Daughter Board WM8904 AC328904][AC328904] inserted on X32 connector of

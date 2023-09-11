@@ -34,6 +34,8 @@
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
+// like __FILE__ without path, using const to avoid duplication on each use.
+static const char *APP_FILE = "app_s1led.c";
 
 // *****************************************************************************
 /* Application Data
@@ -67,10 +69,8 @@ APP_S1LED_DATA app_s1ledData;
 // *****************************************************************************
 // *****************************************************************************
 
-
 /* TODO:  Add any necessary local functions.
 */
-
 
 // *****************************************************************************
 // *****************************************************************************
@@ -85,19 +85,11 @@ APP_S1LED_DATA app_s1ledData;
   Remarks:
     See prototype in app_s1led.h.
  */
-
 void APP_S1LED_Initialize ( void )
 {
     /* Place the App state machine in its initial state. */
     app_s1ledData.state = APP_S1LED_STATE_INIT;
-
-
-
-    /* TODO: Initialize your application's state machine and other
-     * parameters.
-     */
 }
-
 
 /******************************************************************************
   Function:
@@ -106,7 +98,6 @@ void APP_S1LED_Initialize ( void )
   Remarks:
     See prototype in app_s1led.h.
  */
-
 void APP_S1LED_Tasks ( void )
 {
 
@@ -121,7 +112,7 @@ void APP_S1LED_Tasks ( void )
 
             if (appInitialized)
             {
-                SYS_CONSOLE_PRINT("%s:%d Initialized.\r\n",__FILE__,__LINE__);
+                SYS_CONSOLE_PRINT("%s:%d started.\r\n",APP_FILE,__LINE__);
                 app_s1ledData.state = APP_S1LED_STATE_SERVICE_TASKS;
             }
             break;
@@ -139,9 +130,6 @@ void APP_S1LED_Tasks ( void )
             }
             break;
         }
-
-        /* TODO: implement your application state machine.*/
-
 
         /* The default state should never be executed. */
         default:
