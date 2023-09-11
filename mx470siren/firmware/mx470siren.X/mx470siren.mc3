@@ -3451,95 +3451,6 @@
          <value>a_drv_i2s</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_NUM_CLIENTS"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_NUM_CLIENTS&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_PLIB"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_PLIB&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;a_drv_i2s_0&quot; value=&quot;I2S2&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_QUEUE_SIZE"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_QUEUE_SIZE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_RX_DMA"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_RX_DMA&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;a_drv_i2s_0&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_RX_DMA_CHANNEL"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_RX_DMA_CHANNEL&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_TX_DMA"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_TX_DMA&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;a_drv_i2s_0&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_TX_DMA_CHANNEL"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_TX_DMA_CHANNEL&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="DRV_I2S_TX_RX_DMA"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;DRV_I2S_TX_RX_DMA&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;a_drv_i2s_0&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_drv_i2s_0" name="I2S_DATA_LENGTH"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_drv_i2s_0&gt;
-  &lt;a_drv_i2s_0 dnOrder=&quot;0&quot; id=&quot;I2S_DATA_LENGTH&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
-  &lt;/a_drv_i2s_0&gt;
-&lt;/a_drv_i2s_0&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_i2s2" name="!@#harmonyAttachmentState"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_i2s2&gt;
   &lt;a_i2s2 dnOrder=&quot;0&quot;&gt;
@@ -3677,7 +3588,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_i2s2" name="I2S_LRCLK_PIN_DEFINE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_i2s2&gt;
   &lt;a_i2s2 dnOrder=&quot;0&quot; id=&quot;I2S_LRCLK_PIN_DEFINE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;201&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/a_i2s2&gt;
 &lt;/a_i2s2&gt;
 </value>
@@ -8235,7 +8148,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>02c6ec4c3461ec2d9736c658f5a5ec1a8af621b16fa07278b7e4539f85082ff2</hash>
+         <hash>e5ab71fb5c0b1b967a45602c6753cd43398568a23ea8210fcbca4fb4e45b88bd</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -8255,7 +8168,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>31c51354371d694073446a8701e329249ff5a2ea6d910970079e9e57eb3458a8</hash>
+         <hash>be0ba7c2159458d966e3f4f75a3cdcf3a88b03304f3a69514f33fb7ac13fda16</hash>
       </entry>
       <entry>
          <file>..\src\config\default\exceptions.c</file>
@@ -8287,7 +8200,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>8bd8b94c43623b0a0b5dfc4cf008c489e75761c8c96096f4e53d789928b1b73a</hash>
+         <hash>f76d8f670b811eae6452b6d7558203c24e817d616cc4e5d49ebef30f35925564</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>
@@ -8307,7 +8220,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\audio\peripheral\i2s\plib_i2s2.c</file>
-         <hash>7d6bbac978c81d5413a82a9c0d3473bb8667a98b47e72ae8fddebd7c725c1c84</hash>
+         <hash>72dc0c0aaad71249c6b83c8f8be1223a70a6e80055e3f18ee3623e8c4ad4e738</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\uart\plib_uart1.h</file>
