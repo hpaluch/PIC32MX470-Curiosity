@@ -37,7 +37,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define APP_VERSION 101 // 123 = 1.23
+#define APP_VERSION 102 // 123 = 1.23
 
 // like __FILE__ without path, using const to avoid duplication on each use.
 static const char *APP_FILE = "app.c";

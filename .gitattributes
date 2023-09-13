@@ -8,3 +8,5 @@ Makefile text eol=lf
 *.h text eol=crlf
 # GIT LFS
 *.jpg filter=lfs diff=lfs merge=lfs -text
+*.ods filter=lfs diff=lfs merge=lfs -text
+*.dwf3work filter=lfs diff=lfs merge=lfs -text

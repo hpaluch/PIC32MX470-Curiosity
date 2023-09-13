@@ -158,6 +158,80 @@ using 3.3V TTL logic.
 The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card.
 
 Status: Work in Progress
+
+Captured I2C communications which seems to be correct. Device 7-bit
+address is always 0x1A.
+
+| I2C Mode | WM8904	Register | Write Data |	Read Data | Note
+| --- | ---: | ---: | ---: |
+| WR | 00	| FFFF | | Codec Reset |
+| RD | 89 | | 8904 | Codec Responds with 0x8904 magic (=WM8904) |
+| WR | 04 | 0008 | | Bias Control 0, disabled + high perf. |
+| WR | 05 | 0043 | | VM ID Control 0, VMID_BUF_ENA or Enabled or Normal operation divider |  
+| WR | 5A | 0011 | | Analogue HP 1, HPR_ENA or HPL_ENA |
+| WR | 5A | 0077 | | Analogue HP 1, finishing enable |
+| WR | 1F | 01B9 | | DAC Digital Volume Right, set level |
+| WR | 74 | 0000 | | FLL Control 1, FLL Disabled, integer mode |
+| WR | 75 | 0700 | | FLL Control 2, Setting dividers |
+
+VMID is Voltage reference "mid-rail" - should be half of Analog Power Voltage (AVDD)
+under normal operation.
+
+I2C Write output with current debug messages (much more messages than seen on Analyzer):
+
+```
+I2C S3: 0x0 0xff 0xff
+I2C S3: 0x0 0x0 0x0
+I2C S3: 0x4 0x0 0x8
+I2C S3: 0x5 0x0 0x47
+I2C S3: 0x5 0x0 0x43
+I2C S3: 0x4 0x0 0x9
+I2C S3: 0xe 0x0 0x3
+I2C S3: 0x21 0x0 0x0
+I2C S3: 0x3d 0x0 0x0
+I2C S3: 0x62 0x0 0x1
+I2C S3: 0x68 0x0 0x1
+I2C S3: 0x7e 0x0 0xa
+I2C S3: 0x19 0x0 0x42
+I2C S3: 0x12 0x0 0xc
+I2C S3: 0x5a 0x0 0x11
+I2C S3: 0x5a 0x0 0x33
+I2C S3: 0x43 0x0 0xf
+I2C S3: 0x44 0x0 0xf0
+I2C S3: 0x5a 0x0 0x77
+I2C S3: 0x5a 0x0 0xff
+I2C S3: 0x1e 0x0 0xb9
+I2C S3: 0x1f 0x0 0xb9
+I2C S3: 0x1e 0x1 0xb9
+I2C S3: 0x1f 0x1 0xb9
+I2C S3: 0x39 0x0 0x39
+I2C S3: 0x3a 0x0 0x39
+I2C S3: 0x39 0x0 0xb9
+I2C S3: 0x3a 0x0 0xb9
+I2C S3: 0x74 0x0 0x0
+I2C S3: 0x15 0xc 0x5
+I2C S3: 0x14 0x0 0x0
+I2C S3: 0x16 0x40 0x6
+I2C S3: 0x1a 0x0 0x8
+I2C S3: 0x1b 0x8 0x20
+I2C S3: 0x75 0x7 0x0
+I2C S3: 0x76 0x31 0x26
+I2C S3: 0x77 0x1 0x0
+I2C S3: 0x78 0x0 0x0
+I2C S3: 0x74 0x0 0x5
+app.c:203 S2
+```
+
+
+Stored analysis data are under: 
+- [assets/wm8904/i2c/](assets/wm8904/i2c/)
+- where:
+  - `*.dwf3work` - I2C capture Workspace for `Digilent Analog Discovery 2`, software
+    `Digilent WaveForms` Workspace v3.20.1
+  - `*.ods` - spreadsheet in LibreOffice 7.5 format
+- WARNING! These data are very incomplete as can be compared with debug messages...
+
+
 - finished import of skeleton from: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start + many
   fixes.
 - there is one task, that copies S1 button state to LED3
