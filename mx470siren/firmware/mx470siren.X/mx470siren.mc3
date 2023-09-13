@@ -6815,7 +6815,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;i2c2&gt;
   &lt;i2c2 dnOrder=&quot;0&quot; id=&quot;BRG_VALUE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;i2c2&quot; value=&quot;197&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;i2c2&quot; value=&quot;97&quot;/&gt;
     &lt;/Values&gt;
   &lt;/i2c2&gt;
 &lt;/i2c2&gt;
@@ -6901,7 +6901,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="i2c2" name="I2C_CLOCK_SPEED"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;i2c2&gt;
   &lt;i2c2 dnOrder=&quot;0&quot; id=&quot;I2C_CLOCK_SPEED&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;100000&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/i2c2&gt;
 &lt;/i2c2&gt;
 </value>
@@ -6910,7 +6912,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="i2c2" name="I2C_CLOCK_SPEED_HZ"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;i2c2&gt;
   &lt;i2c2 dnOrder=&quot;0&quot; id=&quot;I2C_CLOCK_SPEED_HZ&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;i2c2&quot; value=&quot;100000&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/i2c2&gt;
 &lt;/i2c2&gt;
 </value>
@@ -7992,7 +7996,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\i2c\master\plib_i2c2_master.c</file>
-         <hash>c55fbc31469eca532524aaede6cf59eb58091de13f08530bd06dacca33bae1b5</hash>
+         <hash>c59a051f965919f294f5df11dd39a4b1cbca77fb8489e6c6204917042756c201</hash>
       </entry>
       <entry>
          <file>..\src\config\default\audio\driver\codec\wm8904\drv_wm8904.h</file>
@@ -8148,7 +8152,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>e5ab71fb5c0b1b967a45602c6753cd43398568a23ea8210fcbca4fb4e45b88bd</hash>
+         <hash>d4224bde821980ec59b991b7b2bf5d2d8bd760332e450469f5a7fb73f0cafb8a</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>

@@ -117,7 +117,7 @@ extern "C" {
 #define DRV_I2C_INDEX_0                       0
 #define DRV_I2C_CLIENTS_NUMBER_IDX0           1
 #define DRV_I2C_QUEUE_SIZE_IDX0               2
-#define DRV_I2C_CLOCK_SPEED_IDX0              50000
+#define DRV_I2C_CLOCK_SPEED_IDX0              100000
 
 /* I2S Driver Instance 0 Configuration Options */
 #define DRV_I2S_INDEX_0                0
