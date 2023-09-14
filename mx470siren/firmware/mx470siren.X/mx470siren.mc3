@@ -3999,7 +3999,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;608&quot; canvasWidth=&quot;600&quot; dnOrder=&quot;0&quot;/&gt;
+    &lt;GraphSettings canvasHeight=&quot;612&quot; canvasWidth=&quot;616&quot; dnOrder=&quot;0&quot;/&gt;
     &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;BSP_PIC32MX470_Curiosity_Development_Board&quot; x=&quot;204&quot; y=&quot;19&quot;/&gt;
@@ -4008,13 +4008,13 @@
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;a_i2s2&quot; x=&quot;79&quot; y=&quot;165&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;audio_codec_wm8904&quot; x=&quot;427&quot; y=&quot;166&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;core&quot; x=&quot;30&quot; y=&quot;60&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;core_timer&quot; x=&quot;333&quot; y=&quot;375&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;core_timer&quot; x=&quot;337&quot; y=&quot;379&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;dfp&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;drv_i2c&quot; x=&quot;227&quot; y=&quot;52&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;i2c2&quot; x=&quot;86&quot; y=&quot;82&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;sys_console&quot; x=&quot;175&quot; y=&quot;385&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;sys_debug&quot; x=&quot;465&quot; y=&quot;454&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;sys_time&quot; x=&quot;471&quot; y=&quot;283&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;sys_time&quot; x=&quot;470&quot; y=&quot;283&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;uart1&quot; x=&quot;2&quot; y=&quot;450&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
@@ -5616,6 +5616,17 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_4_ENABLE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_4_ENABLE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;false&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_4_ENABLE_GENERATE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_4_ENABLE_GENERATE&quot;&gt;
@@ -5643,6 +5654,17 @@
   &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_4_HANDLER_LOCK&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;false&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_4_INTERRUPT_HANDLER"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_4_INTERRUPT_HANDLER&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;TIMER_1_Handler&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -5962,6 +5984,17 @@
   &lt;core dnOrder=&quot;0&quot; id=&quot;OCMP5_CLOCK_FREQUENCY&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;0&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="PMD4_REG_VALUE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;PMD4_REG_VALUE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;31&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -6369,6 +6402,53 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="TIMER_1_INTERRUPT_ENABLE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;TIMER_1_INTERRUPT_ENABLE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="TIMER_1_INTERRUPT_ENABLE_UPDATE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;TIMER_1_INTERRUPT_ENABLE_UPDATE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;true&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="TIMER_1_INTERRUPT_HANDLER"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;TIMER_1_INTERRUPT_HANDLER&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="TIMER_1_INTERRUPT_HANDLER_LOCK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;TIMER_1_INTERRUPT_HANDLER_LOCK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="TMR1_CLOCK_ENABLE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;TMR1_CLOCK_ENABLE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="TMR1_CLOCK_FREQUENCY"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;TMR1_CLOCK_FREQUENCY&quot;&gt;
@@ -6654,9 +6734,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core_timer" name="CORE_TIMER_FREQUENCY"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core_timer&gt;
   &lt;core_timer dnOrder=&quot;0&quot; id=&quot;CORE_TIMER_FREQUENCY&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core_timer&quot; value=&quot;24000000&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/core_timer&gt;
 &lt;/core_timer&gt;
 </value>
@@ -6728,12 +6806,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core_timer" name="CORE_TIMER_PERIOD_MS"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core_timer&gt;
   &lt;core_timer dnOrder=&quot;0&quot; id=&quot;CORE_TIMER_PERIOD_MS&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Float dnOrder=&quot;0&quot; id=&quot;max&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;178956.97&lt;/Value&gt;
-      &lt;/Float&gt;
-    &lt;/Attributes&gt;
-    &lt;Values dnOrder=&quot;1&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/core_timer&gt;
 &lt;/core_timer&gt;
 </value>
@@ -6742,9 +6815,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core_timer" name="CORE_TIMER_PERIOD_US"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core_timer&gt;
   &lt;core_timer dnOrder=&quot;0&quot; id=&quot;CORE_TIMER_PERIOD_US&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core_timer&quot; value=&quot;1000&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/core_timer&gt;
 &lt;/core_timer&gt;
 </value>
@@ -6753,9 +6824,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core_timer" name="CORE_TIMER_PERIOD_VALUE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core_timer&gt;
   &lt;core_timer dnOrder=&quot;0&quot; id=&quot;CORE_TIMER_PERIOD_VALUE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core_timer&quot; value=&quot;0x5dc0&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/core_timer&gt;
 &lt;/core_timer&gt;
 </value>
@@ -7561,7 +7630,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_time" name="SYS_TIME_ACHIEVABLE_TICK_RATE_HZ"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_time&gt;
   &lt;sys_time dnOrder=&quot;0&quot; id=&quot;SYS_TIME_ACHIEVABLE_TICK_RATE_HZ&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sys_time&quot; value=&quot;100002083&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/sys_time&gt;
 &lt;/sys_time&gt;
 </value>
@@ -7582,6 +7653,9 @@
     &lt;Attributes dnOrder=&quot;0&quot;&gt;
       &lt;Boolean dnOrder=&quot;0&quot; id=&quot;readOnly&quot;&gt;
         &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+      &lt;Boolean dnOrder=&quot;1&quot; id=&quot;visible&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
       &lt;/Boolean&gt;
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
@@ -7609,6 +7683,58 @@
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sys_time&quot; value=&quot;core_timer&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/sys_time&gt;
+&lt;/sys_time&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_time" name="SYS_TIME_TICKLESS_LOCAL"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_time&gt;
+  &lt;sys_time dnOrder=&quot;0&quot; id=&quot;SYS_TIME_TICKLESS_LOCAL&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
+  &lt;/sys_time&gt;
+&lt;/sys_time&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_time" name="SYS_TIME_TICKLESS_SOURCE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_time&gt;
+  &lt;sys_time dnOrder=&quot;0&quot; id=&quot;SYS_TIME_TICKLESS_SOURCE&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
+  &lt;/sys_time&gt;
+&lt;/sys_time&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_time" name="SYS_TIME_TICK_BASED_LOCAL"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_time&gt;
+  &lt;sys_time dnOrder=&quot;0&quot; id=&quot;SYS_TIME_TICK_BASED_LOCAL&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
+  &lt;/sys_time&gt;
+&lt;/sys_time&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_time" name="SYS_TIME_TICK_BASED_SOURCE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_time&gt;
+  &lt;sys_time dnOrder=&quot;0&quot; id=&quot;SYS_TIME_TICK_BASED_SOURCE&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
   &lt;/sys_time&gt;
 &lt;/sys_time&gt;
 </value>
@@ -8291,7 +8417,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>0e4499078c437a50dda1a3adc93314740603f477827ae7cd0f02d88739d7477a</hash>
+         <hash>9816611ffa86ba7743b54a31736f5b91ce0b76880381545ac55d36c541e0be9e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -8306,12 +8432,20 @@
          <hash>57e31c362cde38fd5642c091174359586b20346c278b2ba78652f0a55af15d7b</hash>
       </entry>
       <entry>
+         <file>..\src\config\default\system\ports\sys_ports.h</file>
+         <hash>32e25883b7d06dc8df2f8357504cc7dbe69d75b0c35f796f318a5407c6cc86a1</hash>
+      </entry>
+      <entry>
          <file>..\src\config\default\initialization.c</file>
          <hash>982febf94f1a137ef31b70848d0c428ffa6170400b731c9bf89604f695b03692</hash>
       </entry>
       <entry>
          <file>..\src\config\default\exceptions.c</file>
          <hash>7c1b9a2e42598d51c643984260a4b0d966a18f1ad97cc90d166aa9a4311ab6af</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\default\system\ports\sys_ports_mapping.h</file>
+         <hash>97195d4a7a99942def4f84b563b6590ee56ecb79c39f0defdc163c548e8f85ab</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\dmac\plib_dmac.c</file>
@@ -8335,7 +8469,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>b9ed9faee854a2a7ae2d6e9dd4bf0e0ff29ebf8bd938b899154981c1a7042c88</hash>
+         <hash>df9774a08bc12712659c262567bceb5489ca15ac9e2182591b3467596d144132</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>

@@ -37,7 +37,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define APP_VERSION 103 // 123 = 1.23
+#define APP_VERSION 104 // 123 = 1.23
 
 // like __FILE__ without path, using const to avoid duplication on each use.
 static const char *APP_FILE = "app.c";
@@ -168,13 +168,13 @@ void APP_Tasks ( void )
         // Application's initial state 
         case APP_STATE_CODEC_OPEN:
         {
-            if(!printed){
-                printed=true;
-                SYS_CONSOLE_PRINT("%s:%d S1\r\n",
-                        APP_FILE,__LINE__);
-            }
             // See if codec is done initializing
             SYS_STATUS status = DRV_CODEC_Status(sysObjdrvCodec0);
+            if(!printed){
+                printed=true;
+                SYS_CONSOLE_PRINT("%s:%d S1 CS=%d\r\n",
+                        APP_FILE,__LINE__,status);
+            }
             if (SYS_STATUS_READY == status)
             {
                 // This means the driver can now be opened.
@@ -192,6 +192,10 @@ void APP_Tasks ( void )
                     SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"%s:%d DRV_CODEC_Open() failed!\r\n",
                             APP_FILE,__LINE__);
                 }          
+            } else if (status == SYS_STATUS_ERROR){
+                    SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"%s:%d codec failed with error status!\r\n",
+                            APP_FILE,__LINE__);
+                appData.state = APP_STATE_ERROR;
             }
         }
         break;
@@ -277,7 +281,11 @@ void APP_Tasks ( void )
         {
         }
         break;
-         
+
+        case APP_STATE_ERROR:
+            LED1_On(); // signal error with red LED
+            break;
+            
         default:
         {
             /* TODO: Handle error in application's state machine. */

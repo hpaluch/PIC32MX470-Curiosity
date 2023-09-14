@@ -1811,7 +1811,8 @@ void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalo
         start_I2C_Commands(drvObj);
     }        
 }
-    SYS_CONSOLE_PRINT("%s:%d bitClk=%u mclk=%u\r\n",__func__,__LINE__,bitClk,mclk);
+    SYS_CONSOLE_PRINT("%s:%d bitClk=%u mclk=%u bitclkRatio=%u\r\n",
+            __func__,__LINE__,bitClk,mclk,bitClk_ratio);
 }
 
 void DRV_WM8904_SamplingRateSet(DRV_HANDLE handle, uint32_t sampleRate)
@@ -2510,6 +2511,7 @@ static const WM8904_I2C_COMMAND_BUFFER WM8904_I2C_InitializationCommands7[] =
 
 static void _DRV_WM8904_ControlTasks (DRV_WM8904_OBJ *drvObj)
 {
+    Nop();Nop();Nop();
     /* Check the application's current state. */
     switch ( drvObj->currentState )
     {
