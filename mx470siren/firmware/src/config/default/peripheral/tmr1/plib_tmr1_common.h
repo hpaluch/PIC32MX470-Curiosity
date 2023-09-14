@@ -1,23 +1,25 @@
 /*******************************************************************************
-  TIME System Service Definitions Header File
+  TMR1 Peripheral Library Interface Header File
 
-  Company:
+  Company
     Microchip Technology Inc.
 
-  File Name:
-    sys_time_definitions.h
+  File Name
+    plib_tmr1_common.h
 
-  Summary:
-    TIME System Service Definitions Header File
+  Summary
+    TMR1 peripheral library interface.
 
-  Description:
-    This file provides implementation-specific definitions for the TIME
-    system service's system interface.
+  Description
+    This file defines the interface to the TC peripheral library.  This
+    library provides access to and control of the associated peripheral
+    instance.
+
 *******************************************************************************/
 
-//DOM-IGNORE-BEGIN
+// DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2019 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -38,25 +40,29 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
-//DOM-IGNORE-END
+// DOM-IGNORE-END
 
-#ifndef SYS_TIME_DEFINITIONS_H
-#define SYS_TIME_DEFINITIONS_H
+#ifndef PLIB_TMR1_COMMON_H    // Guards against multiple inclusion
+#define PLIB_TMR1_COMMON_H
+
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: File includes
+// Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-#include "system/int/sys_int.h"
-#include "configuration.h"
+
+/*  This section lists the other files that are included in this file.
+*/
+#include <stddef.h>
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 
-    extern "C" {
+extern "C" {
 
 #endif
+
 // DOM-IGNORE-END
 
 // *****************************************************************************
@@ -64,52 +70,51 @@
 // Section: Data Types
 // *****************************************************************************
 // *****************************************************************************
+/*  The following data type definitions are used by the functions in this
+    interface and should be considered part of it.
+*/
+
 
 // *****************************************************************************
-/* TIME PLIB API Set needed by the system service */
+/* TMR1_CALLBACK
 
-typedef void (*SYS_TIME_PLIB_CALLBACK)(uint32_t data, uintptr_t context);
-typedef void (*SYS_TIME_PLIB_CALLBACK_REGISTER)(SYS_TIME_PLIB_CALLBACK callback, uintptr_t context);
-typedef uint32_t (*SYS_TIME_PLIB_FREQUENCY_GET)(void);
-typedef void (*SYS_TIME_PLIB_START)(void);
-typedef void (*SYS_TIME_PLIB_STOP)(void);
+  Summary:
+    Use to register a callback with the TMR1.
 
+  Description:
+    When a match is asserted, a callback can be activated.
+    Use TMR1_CALLBACK as the function pointer to register the callback
+    with the match.
 
-typedef void (*SYS_TIME_PLIB_PERIOD_SET)(uint32_t period);
-typedef void (*SYS_TIME_PLIB_COMPARE_SET) (uint32_t compare);
-typedef uint32_t (*SYS_TIME_PLIB_COUNTER_GET)(void);
+  Remarks:
+    The callback should look like:
+      void callback(handle, context);
+	Make sure the return value and parameters of the callback are correct.
+*/
+
+typedef void (*TMR1_CALLBACK)(uint32_t status, uintptr_t context);
+
+// *****************************************************************************
 
 typedef struct
 {
-    SYS_TIME_PLIB_CALLBACK_REGISTER     timerCallbackSet;
-    SYS_TIME_PLIB_START                 timerStart;
-    SYS_TIME_PLIB_STOP                  timerStop;
-    SYS_TIME_PLIB_FREQUENCY_GET         timerFrequencyGet;
-    SYS_TIME_PLIB_PERIOD_SET            timerPeriodSet;
-} SYS_TIME_PLIB_INTERFACE;
+    /*TMR1 callback function happens on Period match*/
+    TMR1_CALLBACK callback_fn;
+    /* - Client data (Event Context) that will be passed to callback */
+    uintptr_t context;
 
+}TMR1_TIMER_OBJECT;
 
-// *****************************************************************************
-/* TIME system service Initialization Data Declaration */
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
 
-struct SYS_TIME_INIT_
-{
-    /* Identifies the PLIB API set to be used by the system service to access
-     * the peripheral. */
-    const SYS_TIME_PLIB_INTERFACE*  timePlib;
-
-    /* Interrupt source ID for the TIMER interrupt. */
-    INT_SOURCE                      hwTimerIntNum;
-
-};
-
-
-//DOM-IGNORE-BEGIN
-#ifdef __cplusplus
 }
+
 #endif
-//DOM-IGNORE-END
+// DOM-IGNORE-END
 
+#endif //_PLIB_TMR1_COMMON_H
 
-#endif // #ifndef SYS_TIME_DEFINITIONS_H
-
+/**
+ End of File
+*/

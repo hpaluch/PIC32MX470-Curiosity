@@ -266,19 +266,17 @@ static const SYS_DEBUG_INIT debugInit =
 // <editor-fold defaultstate="collapsed" desc="SYS_TIME Initialization Data">
 
 static const SYS_TIME_PLIB_INTERFACE sysTimePlibAPI = {
-    .timerCallbackSet = (SYS_TIME_PLIB_CALLBACK_REGISTER)CORETIMER_CallbackSet,
-    .timerStart = (SYS_TIME_PLIB_START)CORETIMER_Start,
-    .timerStop = (SYS_TIME_PLIB_STOP)CORETIMER_Stop ,
-    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)CORETIMER_FrequencyGet,
-    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)NULL,
-    .timerCompareSet = (SYS_TIME_PLIB_COMPARE_SET)CORETIMER_CompareSet,
-    .timerCounterGet = (SYS_TIME_PLIB_COUNTER_GET)CORETIMER_CounterGet,
+    .timerCallbackSet = (SYS_TIME_PLIB_CALLBACK_REGISTER)TMR1_CallbackRegister,
+    .timerStart = (SYS_TIME_PLIB_START)TMR1_Start,
+    .timerStop = (SYS_TIME_PLIB_STOP)TMR1_Stop ,
+    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)TMR1_FrequencyGet,
+    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)TMR1_PeriodSet,
 };
 
 static const SYS_TIME_INIT sysTimeInitData =
 {
     .timePlib = &sysTimePlibAPI,
-    .hwTimerIntNum = 0,
+    .hwTimerIntNum = 4,
 };
 
 // </editor-fold>
@@ -364,6 +362,8 @@ void SYS_Initialize ( void* data )
     I2C2_Initialize();
 	BSP_Initialize();
 	UART1_Initialize();
+
+    TMR1_Initialize();
 
 	I2S2_Initialize();
 

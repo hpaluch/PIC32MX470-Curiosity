@@ -49,6 +49,8 @@
 
 #define CORE_TIMER_FREQUENCY    (24000000U)
 
+#define CORE_TIMER_INTERRUPT_PERIOD_VALUE    0x5dc0
+#define CORE_TIMER_INTERRUPT_PERIOD_IN_US     1000
 
 typedef void (*CORETIMER_CALLBACK)(uint32_t status, uintptr_t context);
 
@@ -56,15 +58,17 @@ typedef struct
 {
     CORETIMER_CALLBACK  callback;
     uintptr_t           context;
+    uint32_t            tickCounter;
+    uint32_t            period;
 } CORETIMER_OBJECT ;
 
 void CORETIMER_Initialize(void);
 void CORETIMER_CallbackSet ( CORETIMER_CALLBACK callback, uintptr_t context );
 uint32_t CORETIMER_FrequencyGet (void);
+void CORETIMER_PeriodSet (uint32_t period);
 void CORETIMER_Start(void);
 void CORETIMER_Stop(void);
-uint32_t CORETIMER_CounterGet(void);
-void CORETIMER_CompareSet(uint32_t compare);
+
 
 
 

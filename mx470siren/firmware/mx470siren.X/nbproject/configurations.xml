@@ -65,6 +65,10 @@
                 <itemPath>../src/config/default/peripheral/i2c/master/plib_i2c_master_common.h</itemPath>
               </logicalFolder>
             </logicalFolder>
+            <logicalFolder name="tmr1" displayName="tmr1" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/tmr1/plib_tmr1.h</itemPath>
+              <itemPath>../src/config/default/peripheral/tmr1/plib_tmr1_common.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="uart" displayName="uart" projectFiles="true">
               <itemPath>../src/config/default/peripheral/uart/plib_uart1.h</itemPath>
               <itemPath>../src/config/default/peripheral/uart/plib_uart_common.h</itemPath>
@@ -88,10 +92,6 @@
             <logicalFolder name="int" displayName="int" projectFiles="true">
               <itemPath>../src/config/default/system/int/sys_int_mapping.h</itemPath>
               <itemPath>../src/config/default/system/int/sys_int.h</itemPath>
-            </logicalFolder>
-            <logicalFolder name="ports" displayName="ports" projectFiles="true">
-              <itemPath>../src/config/default/system/ports/sys_ports_mapping.h</itemPath>
-              <itemPath>../src/config/default/system/ports/sys_ports.h</itemPath>
             </logicalFolder>
             <logicalFolder name="time" displayName="time" projectFiles="true">
               <itemPath>../src/config/default/system/time/sys_time.h</itemPath>
@@ -173,6 +173,9 @@
               <logicalFolder name="master" displayName="master" projectFiles="true">
                 <itemPath>../src/config/default/peripheral/i2c/master/plib_i2c2_master.c</itemPath>
               </logicalFolder>
+            </logicalFolder>
+            <logicalFolder name="tmr1" displayName="tmr1" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/tmr1/plib_tmr1.c</itemPath>
             </logicalFolder>
             <logicalFolder name="uart" displayName="uart" projectFiles="true">
               <itemPath>../src/config/default/peripheral/uart/plib_uart1.c</itemPath>

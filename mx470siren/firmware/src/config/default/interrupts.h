@@ -58,6 +58,7 @@
 // *****************************************************************************
 
 void CORE_TIMER_InterruptHandler( void );
+void TIMER_1_InterruptHandler( void );
 void UART_1_InterruptHandler( void );
 void I2C_2_InterruptHandler( void );
 void DMA_0_InterruptHandler( void );

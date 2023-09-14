@@ -1,24 +1,25 @@
 /*******************************************************************************
-  Ports System Service Mapping File
+  Data Type definition of Timer PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    sys_ports_mapping.h
+    plib_tmr1.h
 
   Summary:
-    Ports System Service mapping file.
+    Data Type definition of the Timer Peripheral Interface Plib.
 
   Description:
-    This header file contains the mapping of the APIs defined in the API header
-    to either the function implementations or macro implementation or the
-    specific variant implementation.
+    This file defines the Data Types for the Timer Plib.
+
+  Remarks:
+    None.
+
 *******************************************************************************/
 
-//DOM-IGNORE-BEGIN
-/******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+/*******************************************************************************
+* Copyright (C) 2019 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -39,64 +40,64 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
-//DOM-IGNORE-END
 
-#ifndef SYS_PORTS_MAPPING_H
-#define SYS_PORTS_MAPPING_H
+#ifndef PLIB_TMR1_H
+#define PLIB_TMR1_H
+
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "device.h"
+#include "plib_tmr1_common.h"
 
 
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
 
-#include "peripheral/gpio/plib_gpio.h"
+    extern "C" {
+
+#endif
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: PORTS System Service Mapping
+// Section: Data Types
 // *****************************************************************************
 // *****************************************************************************
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: Interface Routines
+// *****************************************************************************
+// *****************************************************************************
 
-static inline void SYS_PORT_PinWrite(SYS_PORT_PIN pin, bool value)
-{
-    GPIO_PinWrite((GPIO_PIN)pin, value);
-}
+// *****************************************************************************
+void TMR1_Initialize(void);
 
-static inline bool SYS_PORT_PinRead(SYS_PORT_PIN pin)
-{
-    return(GPIO_PinRead((GPIO_PIN)pin));
-}
+void TMR1_Start(void);
 
-static inline bool SYS_PORT_PinLatchRead(SYS_PORT_PIN pin)
-{
-    return(GPIO_PinLatchRead((GPIO_PIN)pin));
-}
+void TMR1_Stop(void);
 
-static inline void SYS_PORT_PinToggle(SYS_PORT_PIN pin)
-{
-    GPIO_PinToggle((GPIO_PIN)pin);
-}
+void TMR1_PeriodSet(uint16_t period);
 
-static inline void SYS_PORT_PinSet(SYS_PORT_PIN pin)
-{
-    GPIO_PinSet((GPIO_PIN)pin);
-}
+uint16_t TMR1_PeriodGet(void);
 
-static inline void SYS_PORT_PinClear(SYS_PORT_PIN pin)
-{
-    GPIO_PinClear((GPIO_PIN)pin);
-}
+uint16_t TMR1_CounterGet(void);
 
-static inline void SYS_PORT_PinInputEnable(SYS_PORT_PIN pin)
-{
-    GPIO_PinInputEnable((GPIO_PIN)pin);
-}
+uint32_t TMR1_FrequencyGet(void);
 
-static inline void SYS_PORT_PinOutputEnable(SYS_PORT_PIN pin)
-{
-    GPIO_PinOutputEnable((GPIO_PIN)pin);
-}
+void TMR1_InterruptEnable(void);
 
-#endif // SYS_PORTS_MAPPING_H
+void TMR1_InterruptDisable(void);
 
-/*******************************************************************************
- End of File
-*/
+void TMR1_CallbackRegister( TMR1_CALLBACK callback_fn, uintptr_t context );
+
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    }
+#endif
+// DOM-IGNORE-END
+
+#endif /* PLIB_TMR1_H */
