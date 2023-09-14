@@ -43,7 +43,7 @@
 #include <stdlib.h>
 #include <stdbool.h>                    // Defines true
 #include "plib_i2s2.h"
-
+#include "system/console/sys_console.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: I2S2 Implementation
@@ -104,8 +104,11 @@ void I2S2_Initialize ( void )
 
     SPI2CON2SET = SPI2_CON2_IGNROV | SPI2_CON2_IGNTUR | SPI2_CON2_AUDEN | SPI2_CON2_AUDMONO | SPI2_CON2_AUDMOD;
 
+    Nop();Nop();Nop();
     /* Enable SPI2 */
     SPI2CONSET = _SPI2CON_ON_MASK;
+    Nop();Nop();Nop();
+
 }
 
 uint32_t I2S2_LRCLK_Get(void)
@@ -172,8 +175,8 @@ uint32_t I2S2_RefClockSet(uint32_t sysclk, uint32_t samplingRate, uint32_t mclk_
     
     uint32_t refclko = _calcRefclock(sysclk, rodivInt, rotrimInt); 
     uint32_t calcSamplingrate = refclko / mclk_sampleRate_multiplier;
-    
-    printf("%s_RefClockSet: %d %d %d %d\r\n","I2S2",
+
+    SYS_CONSOLE_PRINT("%s_RefClockSet:%d %d %d %d %d\r\n",__func__,__LINE__,
             rodivInt,rotrimInt,calcSamplingrate,refclko);
     
     unsigned int int_flag = false;
@@ -234,8 +237,8 @@ uint32_t I2S2_BaudRateSet(uint32_t bitClk, uint32_t baudRate)
     {
         t_brg++;
     }
-    
-    printf("%s_BaudRateSet: %d %d\r\n","I2S2",bitClk,t_brg);    
+
+    SYS_CONSOLE_PRINT("%s_BaudRateSet:%d bitClk=%d t_brg=%d\r\n",__func__,__LINE__,bitClk,t_brg);
     SPI2BRG = t_brg;
     
     return t_brg;

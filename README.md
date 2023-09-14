@@ -159,6 +159,19 @@ The goal is to produce two tone siren on Headphones Output of Audio Coded Daught
 
 Status: Work in Progress
 
+Today looking at I2S clock issue (no clock output).
+- fixed MCLK, BCLK and LRCLK - need to verify remainder of things
+- using debug message got:
+  ```
+  _samplingRateSet:1814 bitClk=1,536,000 mclk=12,288,000
+  ```
+- where `mclk = bitClk * 8`
+- and 1,536,000 / 32 = 48,000 (our sample rate)
+
+
+- generated code is expecting internal MCLK signal from REFCLOKO, which was not yet
+  entable...
+
 Captured I2C communications which seems to be correct. Device 7-bit
 address is always 0x1A.
 

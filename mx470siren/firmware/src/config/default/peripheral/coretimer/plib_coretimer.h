@@ -47,7 +47,7 @@
     extern "C" {
 #endif
 
-#define CORE_TIMER_FREQUENCY    (10000000U)
+#define CORE_TIMER_FREQUENCY    (24000000U)
 
 
 typedef void (*CORETIMER_CALLBACK)(uint32_t status, uintptr_t context);

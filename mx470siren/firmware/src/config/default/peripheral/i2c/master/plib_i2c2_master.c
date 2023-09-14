@@ -51,7 +51,6 @@
 #include "device.h"
 #include "plib_i2c2_master.h"
 #include "interrupts.h"
-#include "system/console/sys_console.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -72,7 +71,7 @@ void I2C2_Initialize(void)
     /* Disable the I2C Bus collision interrupt */
     IEC1CLR = _IEC1_I2C2BIE_MASK;
 
-    I2C2BRG = 97;
+    I2C2BRG = 235;
 
     I2C2CONCLR = _I2C2CON_SIDL_MASK;
     I2C2CONCLR = _I2C2CON_DISSLW_MASK;
@@ -395,7 +394,6 @@ bool I2C2_Read(uint16_t address, uint8_t* rdata, size_t rlength)
 
 bool I2C2_Write(uint16_t address, uint8_t* wdata, size_t wlength)
 {
-    size_t i;
     uint32_t tempVar = I2C2STAT;
     /* State machine must be idle and I2C module should not have detected a start bit on the bus */
     if((i2c2Obj.state != I2C_STATE_IDLE) || (( tempVar & _I2C2STAT_S_MASK) != 0U))
@@ -414,13 +412,6 @@ bool I2C2_Write(uint16_t address, uint8_t* wdata, size_t wlength)
     i2c2Obj.error               = I2C_ERROR_NONE;
     i2c2Obj.state               = I2C_STATE_ADDR_BYTE_1_SEND;
 
-    SYS_CONSOLE_PRINT("I2C S%u: ",wlength);
-    for(i=0;i<wlength;i++){
-        SYS_CONSOLE_PRINT("0x%x ",wdata[i]);
-    }
-    SYS_CONSOLE_PRINT("\r\n");
-    SYS_CONSOLE_Flush(SYS_CONSOLE_DEFAULT_INSTANCE);
-    
     I2C2CONSET                  = _I2C2CON_SEN_MASK;
     IEC1SET                     = _IEC1_I2C2MIE_MASK;
     IEC1SET                     = _IEC1_I2C2BIE_MASK;
@@ -487,7 +478,7 @@ bool I2C2_TransferSetup(I2C_TRANSFER_SETUP* setup, uint32_t srcClkFreq )
 
     if( srcClkFreq == 0U)
     {
-        srcClkFreq = 20000000UL;
+        srcClkFreq = 48000000UL;
     }
 
     fBaudValue = (((float)srcClkFreq / 2.0f) * ((1.0f / (float)i2cClkSpeed) - 0.000000130f)) - 1.0f;

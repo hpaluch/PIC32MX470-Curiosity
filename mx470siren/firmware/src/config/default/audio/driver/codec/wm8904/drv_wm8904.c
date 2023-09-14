@@ -1809,8 +1809,9 @@ void _samplingRateSet(DRV_WM8904_OBJ *drvObj, uint32_t sampleRate, bool standalo
         drvObj->samplingRate = sampleRate;
 
         start_I2C_Commands(drvObj);
-    }
+    }        
 }
+    SYS_CONSOLE_PRINT("%s:%d bitClk=%u mclk=%u\r\n",__func__,__LINE__,bitClk,mclk);
 }
 
 void DRV_WM8904_SamplingRateSet(DRV_HANDLE handle, uint32_t sampleRate)

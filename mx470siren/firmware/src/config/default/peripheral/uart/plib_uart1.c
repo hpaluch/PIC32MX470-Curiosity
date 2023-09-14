@@ -112,7 +112,7 @@ void UART1_Initialize( void )
     U1STASET = (_U1STA_UTXEN_MASK | _U1STA_URXEN_MASK | _U1STA_UTXISEL1_MASK );
 
     /* BAUD Rate register Setup */
-    U1BRG = 42;
+    U1BRG = 103;
 
     /* Disable Interrupts */
     IEC1CLR = _IEC1_U1EIE_MASK;
