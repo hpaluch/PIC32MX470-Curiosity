@@ -3488,7 +3488,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_i2s2&gt;
   &lt;a_i2s2 dnOrder=&quot;0&quot; id=&quot;I2S_BRG_VALUE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;a_i2s2&quot; value=&quot;1&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;a_i2s2&quot; value=&quot;3&quot;/&gt;
     &lt;/Values&gt;
   &lt;/a_i2s2&gt;
 &lt;/a_i2s2&gt;
@@ -3617,7 +3617,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_i2s2" name="I2S_MCLK_BCLK_RATIO"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_i2s2&gt;
   &lt;a_i2s2 dnOrder=&quot;0&quot; id=&quot;I2S_MCLK_BCLK_RATIO&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;8&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/a_i2s2&gt;
 &lt;/a_i2s2&gt;
 </value>
@@ -8289,7 +8291,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>1a0bc2e023997e65489cdb0b46fb0be6a474578b110f5c642b49e4b9e30d7dd3</hash>
+         <hash>0e4499078c437a50dda1a3adc93314740603f477827ae7cd0f02d88739d7477a</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -8305,7 +8307,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>51aec922e96ba0c42455d3c86787fdbc2a75157a75a4b32492fbc7e87de93e87</hash>
+         <hash>982febf94f1a137ef31b70848d0c428ffa6170400b731c9bf89604f695b03692</hash>
       </entry>
       <entry>
          <file>..\src\config\default\exceptions.c</file>
@@ -8333,7 +8335,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>37b362d765dcf3c4f3bbdb6ffa6168378898280d29f626f784f5f9ad9327a53b</hash>
+         <hash>b9ed9faee854a2a7ae2d6e9dd4bf0e0ff29ebf8bd938b899154981c1a7042c88</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>
@@ -8353,7 +8355,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\audio\peripheral\i2s\plib_i2s2.c</file>
-         <hash>72dc0c0aaad71249c6b83c8f8be1223a70a6e80055e3f18ee3623e8c4ad4e738</hash>
+         <hash>a6f01f32f666d5c1bee855e303b97932fb0de9656488171f9d7ff16b640dccbc</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\uart\plib_uart1.h</file>
