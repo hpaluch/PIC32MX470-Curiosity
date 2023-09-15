@@ -358,8 +358,8 @@ void SYS_Initialize ( void* data )
 	GPIO_Initialize();
 
     DMAC_Initialize();
-	BSP_Initialize();
     I2C2_Initialize();
+	BSP_Initialize();
 	UART1_Initialize();
 
     TMR1_Initialize();

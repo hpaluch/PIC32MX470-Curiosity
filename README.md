@@ -1,5 +1,11 @@
 # Getting started with PIC32MX470-Curiosity
 
+> Latest news!
+> As of 2023-09-15. It really beeps! Please
+> see project No 2 below for details and also [mx470siren/](mx470siren)
+> folder- it is not yet siren, because
+> I'm totally exhausted, but someday it will be....
+
 I recently acquired:
 
 * [PIC32MX470-Curiosity DM320103][DM320103] development board
@@ -11,7 +17,6 @@ I recently acquired:
 
   ![PIC32 Audio Codec Daughter Board WM8904 ](assets/pic32-audio-codec-1024w.jpg)
 
-So I will have lot of fun playing with Codec, DSPs...
 
 > WARNING! Official recommended codec for this card 
 > is [PIC32 Audio Codec Daughter Board - AK4642EN][AC320100]
@@ -157,11 +162,14 @@ using 3.3V TTL logic.
 
 The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card.
 
-Status: Work in Progress
+Status: It Beeps!!!
 
 2023-09-15
-- for the first time I hear noise when 1st buffer is played
-- but there is chaotick LRCK (or LRCLK) and other stuff
+- Got it working! Not sure abto
+  - Most important discovery: 
+    - when WM8904 is set to be Slave
+    - I2S2 MUST be Master ! (opposite)
+  - because Plib somehow does not like 
 
 Today looking at I2S clock issue (no clock output).
 - fixed MCLK, BCLK and LRCLK - need to verify remainder of things
@@ -175,69 +183,6 @@ Today looking at I2S clock issue (no clock output).
 
 - generated code is expecting internal MCLK signal from REFCLOKO, which was not yet
   entable...
-
-Captured I2C communications which seems to be correct. Device 7-bit
-address is always 0x1A.
-
-| I2C Mode | WM8904	Register | Write Data |	Read Data | Note
-| --- | ---: | ---: | ---: |
-| WR | 00	| FFFF | | Codec Reset |
-| RD | 89 | | 8904 | Codec Responds with 0x8904 magic (=WM8904) |
-| WR | 04 | 0008 | | Bias Control 0, disabled + high perf. |
-| WR | 05 | 0043 | | VM ID Control 0, VMID_BUF_ENA or Enabled or Normal operation divider |  
-| WR | 5A | 0011 | | Analogue HP 1, HPR_ENA or HPL_ENA |
-| WR | 5A | 0077 | | Analogue HP 1, finishing enable |
-| WR | 1F | 01B9 | | DAC Digital Volume Right, set level |
-| WR | 74 | 0000 | | FLL Control 1, FLL Disabled, integer mode |
-| WR | 75 | 0700 | | FLL Control 2, Setting dividers |
-
-VMID is Voltage reference "mid-rail" - should be half of Analog Power Voltage (AVDD)
-under normal operation.
-
-I2C Write output with current debug messages (much more messages than seen on Analyzer):
-
-```
-I2C S3: 0x0 0xff 0xff
-I2C S3: 0x0 0x0 0x0
-I2C S3: 0x4 0x0 0x8
-I2C S3: 0x5 0x0 0x47
-I2C S3: 0x5 0x0 0x43
-I2C S3: 0x4 0x0 0x9
-I2C S3: 0xe 0x0 0x3
-I2C S3: 0x21 0x0 0x0
-I2C S3: 0x3d 0x0 0x0
-I2C S3: 0x62 0x0 0x1
-I2C S3: 0x68 0x0 0x1
-I2C S3: 0x7e 0x0 0xa
-I2C S3: 0x19 0x0 0x42
-I2C S3: 0x12 0x0 0xc
-I2C S3: 0x5a 0x0 0x11
-I2C S3: 0x5a 0x0 0x33
-I2C S3: 0x43 0x0 0xf
-I2C S3: 0x44 0x0 0xf0
-I2C S3: 0x5a 0x0 0x77
-I2C S3: 0x5a 0x0 0xff
-I2C S3: 0x1e 0x0 0xb9
-I2C S3: 0x1f 0x0 0xb9
-I2C S3: 0x1e 0x1 0xb9
-I2C S3: 0x1f 0x1 0xb9
-I2C S3: 0x39 0x0 0x39
-I2C S3: 0x3a 0x0 0x39
-I2C S3: 0x39 0x0 0xb9
-I2C S3: 0x3a 0x0 0xb9
-I2C S3: 0x74 0x0 0x0
-I2C S3: 0x15 0xc 0x5
-I2C S3: 0x14 0x0 0x0
-I2C S3: 0x16 0x40 0x6
-I2C S3: 0x1a 0x0 0x8
-I2C S3: 0x1b 0x8 0x20
-I2C S3: 0x75 0x7 0x0
-I2C S3: 0x76 0x31 0x26
-I2C S3: 0x77 0x1 0x0
-I2C S3: 0x78 0x0 0x0
-I2C S3: 0x74 0x0 0x5
-app.c:203 S2
-```
 
 
 Stored analysis data are under: 
@@ -297,6 +242,7 @@ Important information on Audio Codec Daughter card:
 
 
 Additional Peripherals:
+- Pin 12, RB4, mikroBus 1, J5, pin 1 "AN" - trigger for scope when transfer starts
 - RGB LED:
   - Lits RED on general exception forever
   - Lits Magenta on bootstrap exception forever

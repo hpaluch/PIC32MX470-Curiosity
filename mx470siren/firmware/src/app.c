@@ -37,7 +37,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define APP_VERSION 105 // 123 = 1.23
+#define APP_VERSION 108 // 123 = 1.23
 
 // like __FILE__ without path, using const to avoid duplication on each use.
 static const char *APP_FILE = "app.c";
@@ -217,6 +217,8 @@ void APP_Tasks ( void )
                         
             appData.pingPong = 1;   // indicate buffer 1 to be used first 
             appData.state = APP_STATE_CODEC_ADD_BUFFER;           
+            GPIO_RB4_Set(); // One-shot trigger for scope
+
         }
         break;
        
