@@ -159,6 +159,10 @@ The goal is to produce two tone siren on Headphones Output of Audio Coded Daught
 
 Status: Work in Progress
 
+2023-09-15
+- for the first time I hear noise when 1st buffer is played
+- but there is chaotick LRCK (or LRCLK) and other stuff
+
 Today looking at I2S clock issue (no clock output).
 - fixed MCLK, BCLK and LRCLK - need to verify remainder of things
 - using debug message got:

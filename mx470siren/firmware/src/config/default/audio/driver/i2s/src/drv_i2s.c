@@ -1191,9 +1191,7 @@ bool DRV_I2S_ReadQueuePurge( const DRV_HANDLE handle )
 //                   by experiment
 // max_cnt           Max expected value of cnt, time 10 
 //                   (loop runs fastest with this variable global)
-#ifndef SYS_TIME_CPU_CLOCK_FREQUENCY
-#define SYS_TIME_CPU_CLOCK_FREQUENCY                (48000000)
-#endif
+#define SYS_TIME_CPU_CLOCK_FREQUENCY 48000000
 #define PS_PER_INSTR    (1000000/(SYS_TIME_CPU_CLOCK_FREQUENCY/1000000)) 
 #define CYCLES_PER_LOOP 36          
 uint32_t max_cnt;                   

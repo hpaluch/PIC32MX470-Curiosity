@@ -3700,7 +3700,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_i2s2" name="I2S_SPICON_MODE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_i2s2&gt;
   &lt;a_i2s2 dnOrder=&quot;0&quot; id=&quot;I2S_SPICON_MODE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;3&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/a_i2s2&gt;
 &lt;/a_i2s2&gt;
 </value>
@@ -8288,7 +8290,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\evic\plib_evic.c</file>
-         <hash>44056418134621c25f75525f29e89b352cafdc4b579b41b0a631740b167ce2ff</hash>
+         <hash>1cadbcb2df1b7a7efa599546b8e67359ec45dbd1f6e06654fde67b7502e382aa</hash>
       </entry>
       <entry>
          <file>..\src\config\default\system\console\sys_console.h</file>
@@ -8379,14 +8381,6 @@
          <hash>690c74d55c9204f3e3d621635257df1de1c89f097671a678c359f5e24461589a</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\peripheral\coretimer\plib_coretimer.h</file>
-         <hash>05419fb761b5a70be4e9cb38e044e5383d13ce59b32e04107025ac7f9b898881</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\default\peripheral\coretimer\plib_coretimer.c</file>
-         <hash>b94670443f50120747ee844a4ea7c5f1aa5ade95cd485887bb887497fd730b2f</hash>
-      </entry>
-      <entry>
          <file>..\src\config\default\system\int\sys_int_mapping.h</file>
          <hash>a2dcf05575becc98aa212af1d220eda07487bd645d82c4d7a980aa3a22384cf3</hash>
       </entry>
@@ -8404,7 +8398,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.h</file>
-         <hash>d672252eebe189970a139d23448608bec90924751aeb13be07880e0efb3f6f53</hash>
+         <hash>e666c02242b83365c3c48ae969246e19ba65c7f87479d95b7e18560006533377</hash>
       </entry>
       <entry>
          <file>..\src\config\default\system\console\src\sys_console_local.h</file>
@@ -8424,7 +8418,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.c</file>
-         <hash>9d1f7847492c5c3ea9e31ea7d1b15fcaf0c3744a013756d57099690a27c74e82</hash>
+         <hash>858716cc0abd09407f407d6475d3b1bbb9b0811b259b59ed616e5ad5edb50e23</hash>
       </entry>
       <entry>
          <file>..\src\app_s1led.h</file>
@@ -8484,7 +8478,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>b97127876c8aa7e2a28c791d2ab303cd07e27032d8f76a7e0905b9e3aaaf7d79</hash>
+         <hash>8633c6ba69a478e7d37ad2bcea18d017e887caeeb39a3a2c0cca169154cccc33</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -8499,12 +8493,20 @@
          <hash>57e31c362cde38fd5642c091174359586b20346c278b2ba78652f0a55af15d7b</hash>
       </entry>
       <entry>
+         <file>..\src\config\default\system\ports\sys_ports.h</file>
+         <hash>32e25883b7d06dc8df2f8357504cc7dbe69d75b0c35f796f318a5407c6cc86a1</hash>
+      </entry>
+      <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>74a9ea684886837e449ef2bdcbcdecb04910d36659c2e3b85f632a326f04424a</hash>
+         <hash>ef16381c4aa63003e94e668fce4550d2184e926d2e74f981814095d6553bd110</hash>
       </entry>
       <entry>
          <file>..\src\config\default\exceptions.c</file>
          <hash>7c1b9a2e42598d51c643984260a4b0d966a18f1ad97cc90d166aa9a4311ab6af</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\default\system\ports\sys_ports_mapping.h</file>
+         <hash>97195d4a7a99942def4f84b563b6590ee56ecb79c39f0defdc163c548e8f85ab</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\dmac\plib_dmac.c</file>
@@ -8528,7 +8530,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>6494b949ffb057036c68227e31a03a4cc08788a1401d4585e7e289a3bd4329ec</hash>
+         <hash>1f759b1a4395cf5ccd60e38b89e56ae8db2d11cd5edb7ca3473718ee68660199</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>
@@ -8552,7 +8554,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\audio\peripheral\i2s\plib_i2s2.c</file>
-         <hash>a6f01f32f666d5c1bee855e303b97932fb0de9656488171f9d7ff16b640dccbc</hash>
+         <hash>ff697110182e10e6421e5d553127e855f829707cf34f5eebde204712581c2ca2</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\uart\plib_uart1.h</file>
