@@ -6,7 +6,10 @@
 > folder- it is not yet siren, because
 > I'm totally exhausted, but someday it will be....
 >
-> But it is at 500 Hz instead of 1000 Hz, need to evaluate DMA and multipliers...
+> Fixed both frame format (was 64-bit, should be 32-bit) and frequency
+> Now it is expected 1000 Hz. Last problem is noticeable click on every
+> DMA ping-pong switch. I need to find out if buffers and theirs sizes
+> are correct.
 
 I recently acquired:
 
@@ -167,12 +170,29 @@ The goal is to produce two tone siren on Headphones Output of Audio Coded Daught
 Status: It Beeps!!!
 
 2023-09-16
-- but sine frequency is only 500 Hz. According to scope there
-  is wrong format (one LR period transfer 64-bit data, and one
-  channel contains 32-bit instead of 16-bit)
-- therefore trying I2S2->32/16-bit Communication Select bits
-  to 16-bit data, 16-bit FIRO, 16-bit Channel, 32-bit
-  Frame
+- found that the problem with DMA was actually Underflow - because
+  sine was computed on every buffer switch and it was unable
+  to catch with output frequencies. So that cause of 
+  next DMA not working was not clock divider but Underflow.
+- Verified with scope that now we have correct frequencies and
+  correct frame format (16-bit data for each channel, frame period
+  32-bit because we are transmitting in stereo)...
+- last problem is noticeable click on every channel swithc and I actually
+   can see on scope that there are suddenly transfered several 0 samples.
+- I need to find out more...
+
+
+```
+channel=0
+srcAddr=0xA0009960
+srcSize=0x00009600
+destAddr=0xBF805A20
+destSize=2
+cellSize=2
+```
+
+When ratio is 4, DMA parameters are exactly same(!)
+
 
 2023-09-15
 - Got it working! Not sure abto

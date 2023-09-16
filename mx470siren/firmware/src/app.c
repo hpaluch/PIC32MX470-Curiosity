@@ -37,7 +37,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define APP_VERSION 109 // 123 = 1.23
+#define APP_VERSION 114 // 123 = 1.23
 
 // like __FILE__ without path, using const to avoid duplication on each use.
 static const char *APP_FILE = "app.c";
@@ -75,6 +75,7 @@ void _codecTxBufferComplete()
     //Next State -- after the buffer complete interrupt.
     appData.state = APP_STATE_CODEC_ADD_BUFFER;    
     LED2_Toggle();
+    GPIO_RB4_Toggle(); // Toggle RB4, mikroBus1, AN
 }
 
 // *****************************************************************************
@@ -205,19 +206,26 @@ void APP_Tasks ( void )
         {
             SYS_CONSOLE_PRINT("%s:%d S2\r\n",
                         APP_FILE,__LINE__);
-            DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle, 
-                                            appData.codecData.bufferHandler, 
-                                            appData.codecData.context);                                 
-               
-            // Initialize the first buffer with sine wave data
+
+                        // Initialize the first buffer with sine wave data
             appData.codecData.bufferSize1 = _sineTableInit(
                 (DRV_I2S_DATA16*)appData.codecData.txbufferObject1,
                 APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
 				appData.sampleRate);
+
+            // so fill in buffer 2 for next time
+            appData.codecData.bufferSize2 = _sineTableInit(
+                (DRV_I2S_DATA16*)appData.codecData.txbufferObject2,
+                APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
+                appData.sampleRate);
+
+            DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle,
+                                            appData.codecData.bufferHandler,
+                                            appData.codecData.context);
+               
                         
             appData.pingPong = 1;   // indicate buffer 1 to be used first 
             appData.state = APP_STATE_CODEC_ADD_BUFFER;           
-            GPIO_RB4_Set(); // One-shot trigger for scope
 
         }
         break;
@@ -236,13 +244,6 @@ void APP_Tasks ( void )
                 if (appData.codecData.writeBufHandle1 != 
                     DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {   
-                    // just sent buffer 1 to DMA,
-                    // so fill in buffer 2 for next time
-                    appData.codecData.bufferSize2 = _sineTableInit(
-                        (DRV_I2S_DATA16*)appData.codecData.txbufferObject2,
-                        APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
-						appData.sampleRate);
-
                     appData.pingPong = 2;		// switch to second buffer
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
                 } else {
@@ -261,13 +262,6 @@ void APP_Tasks ( void )
                 if (appData.codecData.writeBufHandle2 != 
                     DRV_CODEC_BUFFER_HANDLE_INVALID)
                 {
-                    // just sent buffer 2 to DMA,
-                    // so fill in buffer 1 for next time
-                    appData.codecData.bufferSize1 = _sineTableInit(
-                        (DRV_I2S_DATA16*)appData.codecData.txbufferObject1,
-                        APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
-						appData.sampleRate);
-             
                     appData.pingPong = 1;		// back to first buffer
                     appData.state = APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE;
                 } else {
