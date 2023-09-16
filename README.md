@@ -5,6 +5,8 @@
 > see project No 2 below for details and also [mx470siren/](mx470siren)
 > folder- it is not yet siren, because
 > I'm totally exhausted, but someday it will be....
+>
+> But it is at 500 Hz instead of 1000 Hz, need to evaluate DMA and multipliers...
 
 I recently acquired:
 
@@ -163,6 +165,14 @@ using 3.3V TTL logic.
 The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card.
 
 Status: It Beeps!!!
+
+2023-09-16
+- but sine frequency is only 500 Hz. According to scope there
+  is wrong format (one LR period transfer 64-bit data, and one
+  channel contains 32-bit instead of 16-bit)
+- therefore trying I2S2->32/16-bit Communication Select bits
+  to 16-bit data, 16-bit FIRO, 16-bit Channel, 32-bit
+  Frame
 
 2023-09-15
 - Got it working! Not sure abto

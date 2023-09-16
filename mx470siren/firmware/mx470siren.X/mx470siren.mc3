@@ -3700,7 +3700,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="a_i2s2" name="I2S_SPICON_MODE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;a_i2s2&gt;
   &lt;a_i2s2 dnOrder=&quot;0&quot; id=&quot;I2S_SPICON_MODE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;3&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/a_i2s2&gt;
 &lt;/a_i2s2&gt;
 </value>
@@ -8617,7 +8619,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>9178ab28a3af317243d8f211f824c35f2b457edf224d59a6168cbd2602727e8d</hash>
+         <hash>f4a5c8f4f4d2f1992bd3935da247b2d84bc11e88be729f08f9a5308a842f3fa2</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>
@@ -8641,7 +8643,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\audio\peripheral\i2s\plib_i2s2.c</file>
-         <hash>a6f01f32f666d5c1bee855e303b97932fb0de9656488171f9d7ff16b640dccbc</hash>
+         <hash>ff697110182e10e6421e5d553127e855f829707cf34f5eebde204712581c2ca2</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\uart\plib_uart1.h</file>
