@@ -53,8 +53,8 @@
 #include "peripheral/evic/plib_evic.h"
 #include "peripheral/dmac/plib_dmac.h"
 #include "audio/driver/i2s/drv_i2s.h"
-#include "system/time/sys_time.h"
 #include "driver/i2c/drv_i2c.h"
+#include "system/time/sys_time.h"
 #include "peripheral/i2c/master/plib_i2c2_master.h"
 #include "bsp/bsp.h"
 #include "peripheral/uart/plib_uart1.h"
@@ -205,9 +205,9 @@ typedef struct
     /* I2S0 Driver Object */
     SYS_MODULE_OBJ drvI2S0;
 
-    SYS_MODULE_OBJ  sysTime;
     SYS_MODULE_OBJ  sysDebug;
 
+    SYS_MODULE_OBJ  sysTime;
     SYS_MODULE_OBJ  sysConsole0;
 
     SYS_MODULE_OBJ drvwm8904Codec0;

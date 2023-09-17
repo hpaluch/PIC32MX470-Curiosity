@@ -6,10 +6,7 @@
 > folder- it is not yet siren, because
 > I'm totally exhausted, but someday it will be....
 >
-> Fixed both frame format (was 64-bit, should be 32-bit) and frequency
-> Now it is expected 1000 Hz. Last problem is noticeable click on every
-> DMA ping-pong switch. I need to find out if buffers and theirs sizes
-> are correct.
+> There are few remaining issues described in chapter below
 
 I recently acquired:
 
@@ -111,84 +108,47 @@ Common project properties:
 
 # Project List
 
-
 ## Project1 - 20 MHz Oscillator test
 
+This "warm up" project just tests (using PWM to divide 20 MHz High-Speed
+resonator clock to 1 Mhz and outputs it on OC1 pin.
 
-The Curiosity board contains high-precision 20 MHz resonator. It is required for USB
-support and other high-precision timing projects.
+Please see dedicated [mx470osctest/](mx470osctest/)
 
-The mikroBUS 1 Pin PWM can be used to check for proper frequency (1 MHz). The output
-frequency on this pin is generated entirely in hardware without interrupt using:
-- Timer2 as base for Output Compare 1 (OC1) in PWM mode, Period is 10, so Timer overflows
-  with 20 Mhz / 10 = 2 MHz frequency
-- Output Compare 1 has period 5 (does not matter much). And on each match it toggles
-  output. Therefore OC1 output is 2 MHz /2 = 1 MHz.
-- OC1 Output is connected to mikroBUS 1 (J5), Pin PWM
-
-WARNING! You should never enable Timer2 interrupts on such high frequency (2 MHz in case of
-Timer2) - MIPS32 have very high interrupt overhead, because it has to save and restore
-more than 32 registers on stack. Higher MIPS CPUs offers SRS (Shadow Register Sets) to reduce
-overhead, but it is not our case of PIC32MX.
-
-I intentionally used 1 MHz output because:
-- it is high enough to detect any kind on jitter
-- it is low enough that it can be viewed and/or measured using common consumer grade
-  scopes (in my case `Digilent Analog Discovery 2`)
-
-Additionally this project rotates both RGB LED components and LED1,2,3 to verify
-that Core Timer interrupt works properly and that Core Timer polling works properly:
-
-1. Core Timer interrupt (to verify that Timer interrupts works). It rotates colors
-   on RGB LED using sequence: Off, Red, Green, Blue  - change every 1 s
-2. Using Detail in main loop (to verify that main program thread is working properly - for example
-   it is not clogged with interrupt storm). It uses `CORETIMER_DelayMs(500);` that polls 
-   Core Timer (without interrupt). It rotated LED1, LED2, LED3 in sequence: Off, LED1, LED2, LED3
-   every 0.5 s (2 times faster that RGB LED, however the actual rate is slightly over 0.5s, because
-   we don't compensate for code overhead).
-
-This project was generated using:
-- MCC Harmony plugin
-- Used Optional package: `Harmony 3 - Core` -> `BSP` (Board Support Package)
-  - according to URL: 
-    - at: https://github.com/Microchip-MPLAB-Harmony/bsp/blob/master/boards/pic32mx470_curiosity/config/bsp.py
-  - this BSP should includes our `MX470 Curiosity` board.
-
-Additional I/O:
-
-| CPU Pin | Name | Function | Board Pin |
-| ---: | --- | --- | --- |
-| 29 | RPB14 | OC1 | J5 Pin 16 - MikroBUS1 - Pin PWM |
-
-So on MikroBUS 1 PWM pin there should be rectangular 1 MHz frequency (oscillator 20 MHz / 20 )
-using 3.3V TTL logic.
 
 ## Project No. 2 - Siren
 
-The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card.
+The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card. It is an adventurous attempt to reproduce project
+for SAME70: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
+- However there is important catch! We may not use Audio template to setup
+  all components and their binding, because such Template is empty for
+  PIC32MX
 
-Status: It Beeps!!!
+Status: It Beeps! (produces sine waveform on headphones output).
 
-2023-09-16
-- found that the problem with DMA was actually Underflow - because
-  sine was computed on every buffer switch and it was unable
-  to catch with output frequencies. So that cause of 
-  next DMA not working was not clock divider but Underflow.
-- Verified with scope that now we have correct frequencies and
-  correct frame format (16-bit data for each channel, frame period
-  32-bit because we are transmitting in stereo)...
-- last problem is noticeable click on every channel swithc and I actually
-   can see on scope that there are suddenly transfered several 0 samples.
-- I need to find out more...
+2023-09-17:
+- it generally works (produces 1 kHz sine output on headphones),
+  but there are two unresolved problems:
+
+1. when new buffer is added on DMA there is spurious extra 0 Frame
+   on sine waveform. Shown on picture below:
+
+  ![I2S extra 0 frame](assets/wm8904/i2s/problems/scope-extra-0-frame.gif)
+
+  - also provided `Digilent Analog Discovery 2` workspace file on:
+  - [assets/wm8904/i2s/problems/MX470-Curiosity-siren-i2s-bclk-analog-trigger.dwf3work](assets/wm8904/i2s/problems/MX470-Curiosity-siren-i2s-bclk-analog-trigger.dwf3work)
+
+2. Power Up Startup is wonky - after pushing MCLR/RESET button it works properly
+
+3. There are noticeable clicks heard in headphones with frequency
+   similar to DMA switches - however I'm unable to spot them on scope
+   (I think that this extra 0 in sine does not produce such click sound)
 
 Buffer debug info:
 ```
 app.c:124 data: 0,4276,...,-8480,-4276
 app.c:126 bufsize=38400
 ```
-
-Observer 2138: `100001011010`
-should be:     `1000010110100`
 
 The 38400 is buffer size in bytes, to get number of samples divide it
 by 4 (because there are 2 bytes for left channel and 2 bytes for right channel,
@@ -205,6 +165,17 @@ cellSize=2
 ```
 
 When ratio is 4, DMA parameters are exactly same(!)
+
+> WARNING!
+>
+> MCC Harmony tool sometimes screws I2S0 instance component, removing
+> required sources on Generate action. The remedy
+> is to always check:
+> - Project Graph -> I2S Driver -> click on `Instance 0`.
+> - if `Configuration Options` tab  is empty (only `I2S` word is shown), you
+>   are in trouble
+> - in such case Do NOT click on Generate, but close and open MCC
+>   Harmony - it usually helps(!)
 
 
 2023-09-15
