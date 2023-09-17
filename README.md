@@ -181,6 +181,19 @@ Status: It Beeps!!!
    can see on scope that there are suddenly transfered several 0 samples.
 - I need to find out more...
 
+Buffer debug info:
+```
+app.c:124 data: 0,4276,...,-8480,-4276
+app.c:126 bufsize=38400
+```
+
+Observer 2138: `100001011010`
+should be:     `1000010110100`
+
+The 38400 is buffer size in bytes, to get number of samples divide it
+by 4 (because there are 2 bytes for left channel and 2 bytes for right channel,
+per sample): 9600
+
 
 ```
 channel=0

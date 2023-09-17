@@ -46,7 +46,7 @@
 
 #include "plib_dmac.h"
 #include "interrupts.h"
-
+#include "../gpio/plib_gpio.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -315,7 +315,7 @@ bool DMAC_ChannelTransfer(DMAC_CHANNEL channel, const void *srcAddr, size_t srcS
             *(volatile uint32_t *)(regs) = _DCH0ECON_CFORCE_MASK;
         }
     }
-
+    GPIO_RD4_Toggle();
     return returnStatus;
 }
 

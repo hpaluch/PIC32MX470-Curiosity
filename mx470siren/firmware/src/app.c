@@ -37,7 +37,9 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define APP_VERSION 114 // 123 = 1.23
+//#define DEBUG_BUFFER_MARKERS
+
+#define APP_VERSION 115 // 123 = 1.23
 
 // like __FILE__ without path, using const to avoid duplication on each use.
 static const char *APP_FILE = "app.c";
@@ -85,7 +87,11 @@ void _codecTxBufferComplete()
 // *****************************************************************************
 
 uint32_t _sineTableInit(DRV_I2S_DATA16* buffer, uint32_t maxBufferSize,
-	uint32_t frequency, uint32_t sampleRate)
+	uint32_t frequency, uint32_t sampleRate
+#ifdef DEBUG_BUFFER_MARKERS
+    ,uint16_t marker
+#endif
+)
 {
     uint32_t i,j,k, maxNumCycles;
     uint32_t numSamplesPerCycle;
@@ -112,6 +118,22 @@ uint32_t _sineTableInit(DRV_I2S_DATA16* buffer, uint32_t maxBufferSize,
         k += numSamplesPerCycle;
     }
     
+    SYS_CONSOLE_PRINT("%s:%d data: %d,%d,...,%d,%d\r\n",
+         APP_FILE,__LINE__,
+            buffer[0].leftData,buffer[1].leftData,
+            buffer[k-2].leftData,buffer[k-1].leftData);    
+    SYS_CONSOLE_PRINT("%s:%d bufsize=%zu\r\n",
+         APP_FILE,__LINE__,sizeof(DRV_I2S_DATA16)*k);
+    
+#ifdef DEBUG_BUFFER_MARKERS    
+    // mark start and end of buffer with pulse
+    if (marker){
+        buffer[0].leftData = marker;
+        buffer[0].rightData = marker;
+        buffer[k-1].leftData = -marker;
+        buffer[k-1].rightData = -marker;
+    }
+#endif
     return sizeof(DRV_I2S_DATA16)*k;    // return size of filled-in buffer   
 }
 
@@ -211,13 +233,21 @@ void APP_Tasks ( void )
             appData.codecData.bufferSize1 = _sineTableInit(
                 (DRV_I2S_DATA16*)appData.codecData.txbufferObject1,
                 APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
-				appData.sampleRate);
+				appData.sampleRate
+#ifdef DEBUG_BUFFER_MARKERS                    
+                    ,30000
+#endif
+                    );
 
             // so fill in buffer 2 for next time
             appData.codecData.bufferSize2 = _sineTableInit(
                 (DRV_I2S_DATA16*)appData.codecData.txbufferObject2,
                 APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
-                appData.sampleRate);
+                appData.sampleRate
+#ifdef DEBUG_BUFFER_MARKERS                                       
+                    ,10000
+#endif                    
+                    );
 
             DRV_CODEC_BufferEventHandlerSet(appData.codecData.handle,
                                             appData.codecData.bufferHandler,
@@ -232,6 +262,7 @@ void APP_Tasks ( void )
        
         case APP_STATE_CODEC_ADD_BUFFER:
         {
+            GPIO_RE3_Set();
             // Will ping-pong back and forth between buffer 1 and 2                      
             if (appData.pingPong==1)
             {
@@ -269,6 +300,7 @@ void APP_Tasks ( void )
                         APP_FILE,__LINE__);
                 }
             }                       
+            GPIO_RE3_Clear();
         }
         break;
 
