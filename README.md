@@ -138,6 +138,14 @@ Status: It Beeps! (produces sine waveform on headphones output).
   - also provided `Digilent Analog Discovery 2` workspace file on:
   - [assets/wm8904/i2s/problems/MX470-Curiosity-siren-i2s-bclk-analog-trigger.dwf3work](assets/wm8904/i2s/problems/MX470-Curiosity-siren-i2s-bclk-analog-trigger.dwf3work)
 
+   NOW I know where is the problem: For some reason, ENHBUF=0 and setup of new DMA transfer takes
+   15 micro-seconds. (`RE3_ADDBUF` on Digital analyzer)
+
+   Here is detail from Digital Analyzer:
+
+  ![I2S extra 0 frame - DIGITAL](assets/wm8904/i2s/problems/scope-extra-0-frame-digital.gif)
+
+
 2. Power Up Startup is wonky - after pushing MCLR/RESET button it works properly
 
 3. There are noticeable clicks heard in headphones with frequency
