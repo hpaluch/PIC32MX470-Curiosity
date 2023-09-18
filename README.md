@@ -147,6 +147,27 @@ Status: It Beeps! (produces sine waveform on headphones output).
 TIP: Switch S1 now mutes/unmutes Audio. Mute change also printed on
 UART output.
 
+Other notes:
+
+Had to manually set `FRMPOL=0` as required for standard I2S (symptom was that left
+and right channel output was offset by 1 sample):
+
+```c
+// mx470siren/firmware/src/config/default/audio/peripheral/i2s/plib_i2s2.c
+#define SPI2_CON_FRMPOL                     (0 << _SPI2CON_FRMPOL_POSITION)
+```
+Some clever guy decided that this setting should be hidden, as can be
+seen under:
+```python
+# .../harmony-repo/audio/peripheral/spi_01329/config/spi.py
+def instantiateComponent(i2sComponent):
+
+    i2sSym_SPI_SPICON_FRMPOL = i2sComponent.createIntegerSymbol("I2S_SPICON_FRMPOL", None)
+    i2sSym_SPI_SPICON_FRMPOL.setDefaultValue(1)
+    i2sSym_SPI_SPICON_FRMPOL.setVisible(False)
+```
+
+
 Buffer debug info:
 ```
 app.c:124 data: 0,4276,...,-8480,-4276

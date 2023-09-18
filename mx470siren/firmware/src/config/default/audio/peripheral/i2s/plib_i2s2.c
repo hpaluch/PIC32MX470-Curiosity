@@ -54,7 +54,7 @@
 
 #define SPI2_CON_FRMEN                      (1 << _SPI2CON_FRMEN_POSITION)      // always 1 for I2S
 #define SPI2_CON_FRMSYNC                    (0 << _SPI2CON_FRMSYNC_POSITION)
-#define SPI2_CON_FRMPOL                     (1 << _SPI2CON_FRMPOL_POSITION)
+#define SPI2_CON_FRMPOL                     (0 << _SPI2CON_FRMPOL_POSITION)
 #define SPI2_CON_MSSEN                      (1 << _SPI2CON_MSSEN_POSITION)      // always 1 for I2S
 #define SPI2_CON_FRMSYPW                    (0 << _SPI2CON_FRMSYPW_POSITION)    // always 0 for I2S
 #define SPI2_CON_FRMCNT                     (4 << _SPI2CON_FRMCNT_POSITION)
