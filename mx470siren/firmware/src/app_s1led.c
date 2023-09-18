@@ -71,6 +71,13 @@ APP_S1LED_DATA app_s1ledData;
 
 /* TODO:  Add any necessary local functions.
 */
+static void AppLed_TimerCallback( 
+                uintptr_t context )
+{
+        // APP_S1LED_DATA *appData = (APP_S1LED_DATA*)context;
+    GPIO_RD2_Toggle(); // mikroBus1 SCK
+        
+}
 
 // *****************************************************************************
 // *****************************************************************************
@@ -89,6 +96,13 @@ void APP_S1LED_Initialize ( void )
 {
     /* Place the App state machine in its initial state. */
     app_s1ledData.state = APP_S1LED_STATE_INIT;
+    app_s1ledData.tmrHandle = SYS_TIME_CallbackRegisterMS(AppLed_TimerCallback, 
+                    (uintptr_t)&app_s1ledData, 1/*ms*/, SYS_TIME_PERIODIC);
+    if (app_s1ledData.tmrHandle == SYS_TIME_HANDLE_INVALID){
+        SYS_DEBUG_PRINT(SYS_ERROR_FATAL,"ERROR: %s:%d SYS_TIME_CallbackRegisterMS() failed!\r\n",
+               APP_FILE,__LINE__);
+        app_s1ledData.state = APP_S1LED_STATE_FATAL_ERROR;
+    }
 }
 
 /******************************************************************************

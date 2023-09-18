@@ -80,6 +80,15 @@
 #define GPIO_RD0_Get()               ((PORTD >> 0) & 0x1)
 #define GPIO_RD0_PIN                  GPIO_PIN_RD0
 
+/*** Macros for GPIO_RD2 pin ***/
+#define GPIO_RD2_Set()               (LATDSET = (1<<2))
+#define GPIO_RD2_Clear()             (LATDCLR = (1<<2))
+#define GPIO_RD2_Toggle()            (LATDINV= (1<<2))
+#define GPIO_RD2_OutputEnable()      (TRISDCLR = (1<<2))
+#define GPIO_RD2_InputEnable()       (TRISDSET = (1<<2))
+#define GPIO_RD2_Get()               ((PORTD >> 2) & 0x1)
+#define GPIO_RD2_PIN                  GPIO_PIN_RD2
+
 /*** Macros for GPIO_RD4 pin ***/
 #define GPIO_RD4_Set()               (LATDSET = (1<<4))
 #define GPIO_RD4_Clear()             (LATDCLR = (1<<4))

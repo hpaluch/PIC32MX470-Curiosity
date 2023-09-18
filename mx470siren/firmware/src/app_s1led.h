@@ -64,8 +64,7 @@ typedef enum
     /* Application's state machine's initial state. */
     APP_S1LED_STATE_INIT=0,
     APP_S1LED_STATE_SERVICE_TASKS,
-    /* TODO: Define states used by the application state machine. */
-
+    APP_S1LED_STATE_FATAL_ERROR,
 } APP_S1LED_STATES;
 
 
@@ -86,9 +85,8 @@ typedef struct
 {
     /* The application's current state */
     APP_S1LED_STATES state;
-
-    /* TODO: Define any additional data used by the application. */
-
+    /* Identifies control module(Timer) driver open handle */    
+    DRV_HANDLE tmrHandle;
 } APP_S1LED_DATA;
 
 // *****************************************************************************
