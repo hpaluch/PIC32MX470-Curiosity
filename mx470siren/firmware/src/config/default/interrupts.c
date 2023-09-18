@@ -94,7 +94,7 @@ void __ISR(_I2C_2_VECTOR, ipl1SOFT) I2C_2_Handler (void)
     I2C_2_InterruptHandler();
 }
 
-void __ISR(_DMA_0_VECTOR, ipl1SOFT) DMA_0_Handler (void)
+void __ISR(_DMA_0_VECTOR, ipl2SOFT) DMA_0_Handler (void)
 {
     DMA_0_InterruptHandler();
 }

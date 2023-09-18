@@ -5669,6 +5669,28 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_35_PRIORITY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_35_PRIORITY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;2&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_35_PRIVALUE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_35_PRIVALUE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;134217728&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_37_ENABLE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_37_ENABLE&quot;&gt;
@@ -5729,6 +5751,28 @@
   &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_42_INTERRUPT_HANDLER&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;DMA_0_InterruptHandler&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_42_PRIORITY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_42_PRIORITY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;2&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="EVIC_42_PRIVALUE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;EVIC_42_PRIVALUE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;524288&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -8500,7 +8544,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\evic\plib_evic.c</file>
-         <hash>1cadbcb2df1b7a7efa599546b8e67359ec45dbd1f6e06654fde67b7502e382aa</hash>
+         <hash>ef0a910b7a756cacff6ebe02a118842b33152a5653b643f7070a01dcbae18662</hash>
       </entry>
       <entry>
          <file>..\src\config\default\system\console\sys_console.h</file>
@@ -8628,7 +8672,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.c</file>
-         <hash>858716cc0abd09407f407d6475d3b1bbb9b0811b259b59ed616e5ad5edb50e23</hash>
+         <hash>69fe61add33071db2c7aad347548ebc6f265cec9e5c45a0efb3850308a1b7197</hash>
       </entry>
       <entry>
          <file>..\src\app_s1led.h</file>
@@ -8688,7 +8732,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>44dae28a0c9a99d8d5334eee78efea8138250c7a74ebfe93a6f6b1b78271355c</hash>
+         <hash>2bdafd07ce82a11d24153719195b731225d12167b07bbf572d7efa1c1d22d367</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -8703,12 +8747,20 @@
          <hash>57e31c362cde38fd5642c091174359586b20346c278b2ba78652f0a55af15d7b</hash>
       </entry>
       <entry>
+         <file>..\src\config\default\system\ports\sys_ports.h</file>
+         <hash>32e25883b7d06dc8df2f8357504cc7dbe69d75b0c35f796f318a5407c6cc86a1</hash>
+      </entry>
+      <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>70a88092d4def58c124ee4a127d3aba5f8f2508fe1ab9b0a099a2f68606dcb14</hash>
+         <hash>7af18275d32f740a0e91c073b5f0bed790b58c79efdbaca379ffd6fde6aa87c0</hash>
       </entry>
       <entry>
          <file>..\src\config\default\exceptions.c</file>
          <hash>7c1b9a2e42598d51c643984260a4b0d966a18f1ad97cc90d166aa9a4311ab6af</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\default\system\ports\sys_ports_mapping.h</file>
+         <hash>97195d4a7a99942def4f84b563b6590ee56ecb79c39f0defdc163c548e8f85ab</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\dmac\plib_dmac.c</file>
@@ -8732,7 +8784,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>d822662da7f7477352c1e93ae35aaab1c175ca4147e53edba0db4da9aca0ad83</hash>
+         <hash>2755c6435e70ad00aa6b53f4cb7bfb07ec27e2c8d0b011cbc30e6a6cfc41feb5</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>
