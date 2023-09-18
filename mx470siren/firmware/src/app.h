@@ -99,6 +99,7 @@ typedef struct
     uint8_t *txbufferObject1;
     uint8_t *txbufferObject2;
     size_t bufferSize1, bufferSize2;
+    bool muted;
 } AUDIO_CODEC_DATA;
 
 typedef struct

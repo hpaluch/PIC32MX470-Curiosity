@@ -44,11 +44,11 @@
 // like __FILE__ without path, using const to avoid duplication on each use.
 static const char *APP_FILE = "app.c";
 
-// audio buffers
+// audio buffers - added 1 guard sample to detect DMA overflow
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) 
-    App_Tone_Lookup_Table_tone1[APP_MAX_AUDIO_NUM_SAMPLES];
+    App_Tone_Lookup_Table_tone1[APP_MAX_AUDIO_NUM_SAMPLES+1];
 DRV_I2S_DATA16 __attribute__ ((aligned (32))) 
-    App_Tone_Lookup_Table_tone2[APP_MAX_AUDIO_NUM_SAMPLES];
+    App_Tone_Lookup_Table_tone2[APP_MAX_AUDIO_NUM_SAMPLES+1];
 
 // *****************************************************************************
 /* Application Data
@@ -87,7 +87,7 @@ void _codecTxBufferComplete()
 // *****************************************************************************
 
 uint32_t _sineTableInit(DRV_I2S_DATA16* buffer, uint32_t maxBufferSize,
-	uint32_t frequency, uint32_t sampleRate
+	uint32_t frequency, uint32_t sampleRate, int16_t guardSample
 #ifdef DEBUG_BUFFER_MARKERS
     ,uint16_t marker
 #endif
@@ -134,6 +134,9 @@ uint32_t _sineTableInit(DRV_I2S_DATA16* buffer, uint32_t maxBufferSize,
         buffer[k-1].rightData = -marker;
     }
 #endif
+    // guard sample to detect DMA reading past buffer
+    buffer[k].leftData = guardSample;
+    buffer[k].rightData = guardSample;
     return sizeof(DRV_I2S_DATA16)*k;    // return size of filled-in buffer   
 }
 
@@ -153,6 +156,7 @@ void _audioCodecInitialize (AUDIO_CODEC_DATA* codecData)
     codecData->txbufferObject2 = (uint8_t *) App_Tone_Lookup_Table_tone2;
     codecData->bufferSize1 = 0;
     codecData->bufferSize2 = 0;
+    codecData->muted = false;
 }
 
 
@@ -233,7 +237,7 @@ void APP_Tasks ( void )
             appData.codecData.bufferSize1 = _sineTableInit(
                 (DRV_I2S_DATA16*)appData.codecData.txbufferObject1,
                 APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
-				appData.sampleRate
+				appData.sampleRate,-30000
 #ifdef DEBUG_BUFFER_MARKERS                    
                     ,30000
 #endif
@@ -243,7 +247,7 @@ void APP_Tasks ( void )
             appData.codecData.bufferSize2 = _sineTableInit(
                 (DRV_I2S_DATA16*)appData.codecData.txbufferObject2,
                 APP_MAX_AUDIO_NUM_SAMPLES, appData.frequency,
-                appData.sampleRate
+                appData.sampleRate,30000
 #ifdef DEBUG_BUFFER_MARKERS                                       
                     ,10000
 #endif                    
@@ -301,6 +305,18 @@ void APP_Tasks ( void )
                 }
             }                       
             GPIO_RE3_Clear();
+            // decrease volume if switch is pressed, thanks to DMA ping pong
+            // it will also debounce switch...
+            if (SWITCH1_Get() == SWITCH1_STATE_PRESSED){
+                appData.codecData.muted = !appData.codecData.muted;
+                if (appData.codecData.muted){
+                    DRV_CODEC_MuteOn(appData.codecData.handle);
+                    SYS_CONSOLE_PRINT("%s:%d Output Muted\r\n",APP_FILE,__LINE__);
+                } else {
+                    DRV_CODEC_MuteOff(appData.codecData.handle);
+                    SYS_CONSOLE_PRINT("%s:%d Output Active\r\n",APP_FILE,__LINE__);
+                }
+            }
         }
         break;
 

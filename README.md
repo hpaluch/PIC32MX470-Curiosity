@@ -144,6 +144,9 @@ Status: It Beeps! (produces sine waveform on headphones output).
    similar to DMA switches - however I'm unable to spot them on scope
    (I think that this extra 0 in sine does not produce such click sound)
 
+TIP: Switch S1 now mutes/unmutes Audio. Mute change also printed on
+UART output.
+
 Buffer debug info:
 ```
 app.c:124 data: 0,4276,...,-8480,-4276
