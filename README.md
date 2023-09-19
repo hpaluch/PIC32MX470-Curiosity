@@ -1,4 +1,4 @@
-# Getting started with PIC32MX470-Curiosity
+# Getting started with PIC32MX470-Curiosity and WM8904 audio codec
 
 Here is my first Audio project that uses PIC32MX470 CPU (MIP32 M4K from Microchip)
 and WM8904 Audio codec.
@@ -134,7 +134,11 @@ for SAME70: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
   all components and their binding, because such Template is empty for
   PIC32MX
 
-Status: Finally It Works!
+Status: Finally It Works properly!
+
+Important manual fixes to code Generated with MCC Tool:
+- [fix LRCLK I2S polarity](commit/6d2b5d4a2c0c737ab02698ee6461a4bc9aedbac5)
+
 
 2023-09-19:
 - fixed latency (caused extra 0 sample inserted on DMA start) by
