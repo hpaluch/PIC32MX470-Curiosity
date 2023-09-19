@@ -137,7 +137,7 @@ for SAME70: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
 Status: Finally It Works properly!
 
 Important manual fixes to code Generated with MCC Tool:
-- [fix LRCLK I2S polarity](commit/6d2b5d4a2c0c737ab02698ee6461a4bc9aedbac5)
+- [fix LRCLK I2S polarity](../../commit/6d2b5d4a2c0c737ab02698ee6461a4bc9aedbac5)
 
 
 2023-09-19:
