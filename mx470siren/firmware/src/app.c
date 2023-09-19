@@ -39,7 +39,7 @@
 
 //#define DEBUG_BUFFER_MARKERS
 
-#define APP_VERSION 115 // 123 = 1.23
+#define APP_VERSION 116 // 123 = 1.23
 
 // like __FILE__ without path, using const to avoid duplication on each use.
 static const char *APP_FILE = "app.c";
@@ -312,9 +312,11 @@ void APP_Tasks ( void )
                 appData.codecData.muted = !appData.codecData.muted;
                 if (appData.codecData.muted){
                     DRV_CODEC_MuteOn(appData.codecData.handle);
+                    LED3_On();
                     SYS_CONSOLE_PRINT("%s:%d Output Muted\r\n",APP_FILE,__LINE__);
                 } else {
                     DRV_CODEC_MuteOff(appData.codecData.handle);
+                    LED3_Off();
                     SYS_CONSOLE_PRINT("%s:%d Output Active\r\n",APP_FILE,__LINE__);
                 }
             }

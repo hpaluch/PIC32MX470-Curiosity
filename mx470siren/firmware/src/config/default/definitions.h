@@ -61,15 +61,14 @@
 #include "peripheral/tmr1/plib_tmr1.h"
 #include "system/console/sys_console.h"
 #include "system/console/src/sys_console_uart_definitions.h"
-#include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "audio/peripheral/i2s/plib_i2s2.h"
+#include "audio/driver/codec/wm8904/drv_wm8904.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
 #include "system/dma/sys_dma.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
 #include "app.h"
-#include "app_s1led.h"
 
 
 

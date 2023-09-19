@@ -571,7 +571,7 @@
   &lt;HarmonyCore dnOrder=&quot;0&quot; id=&quot;APP1_C&quot;&gt;
     &lt;Attributes dnOrder=&quot;0&quot;&gt;
       &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
       &lt;/Boolean&gt;
       &lt;String dnOrder=&quot;1&quot; id=&quot;name&quot;&gt;
         &lt;Value dnOrder=&quot;0&quot;&gt;app_s1led.c&lt;/Value&gt;
@@ -587,7 +587,7 @@
   &lt;HarmonyCore dnOrder=&quot;0&quot; id=&quot;APP1_H&quot;&gt;
     &lt;Attributes dnOrder=&quot;0&quot;&gt;
       &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
       &lt;/Boolean&gt;
       &lt;String dnOrder=&quot;1&quot; id=&quot;name&quot;&gt;
         &lt;Value dnOrder=&quot;0&quot;&gt;app_s1led.h&lt;/Value&gt;
@@ -2818,7 +2818,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;HarmonyCore&gt;
   &lt;HarmonyCore dnOrder=&quot;0&quot; id=&quot;GEN_APP_TASK_COUNT&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;2&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;1&quot;/&gt;
     &lt;/Values&gt;
   &lt;/HarmonyCore&gt;
 &lt;/HarmonyCore&gt;
@@ -8675,16 +8675,8 @@
          <hash>69fe61add33071db2c7aad347548ebc6f265cec9e5c45a0efb3850308a1b7197</hash>
       </entry>
       <entry>
-         <file>..\src\app_s1led.h</file>
-         <hash>1eec8f189682e99d8ef772700dec79d995d4b21051d4d1da9bc2d8e8ade3e7d2</hash>
-      </entry>
-      <entry>
          <file>..\src\config\default\driver\i2c\drv_i2c.h</file>
          <hash>098d38bbc9c9d42befb9e601cfaf7f342ce8c670b788c961ef84df6db1ecbf82</hash>
-      </entry>
-      <entry>
-         <file>..\src\app_s1led.c</file>
-         <hash>d804e7a0581a824d104b77bc47aae70ccf422fdde61b50bf11ac8d7c09fc3910</hash>
       </entry>
       <entry>
          <file>..\src\config\default\audio\peripheral\i2s\plib_i2s2.h</file>
@@ -8724,7 +8716,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\tasks.c</file>
-         <hash>4dfed0278b884898ddd19c0127380b053c815a3b91c5af6a8b3c54d5eeffc273</hash>
+         <hash>0b463b879f4614e840d575af48fb1aa90074293a51446b55497545f0e4d67b4a</hash>
       </entry>
       <entry>
          <file>..\src\config\default\system\time\src\sys_time_local.h</file>
@@ -8732,7 +8724,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>2bdafd07ce82a11d24153719195b731225d12167b07bbf572d7efa1c1d22d367</hash>
+         <hash>b8d82b84730b848a596c08a930e3ff12c05247ed99a1ba5e1d40c749b1d317f1</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -8752,7 +8744,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>7af18275d32f740a0e91c073b5f0bed790b58c79efdbaca379ffd6fde6aa87c0</hash>
+         <hash>910a08e0725b72862aec9dc1c6a340a3d9872ade874cd141f9c2b0beed09e53c</hash>
       </entry>
       <entry>
          <file>..\src\config\default\exceptions.c</file>
@@ -8784,7 +8776,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>2755c6435e70ad00aa6b53f4cb7bfb07ec27e2c8d0b011cbc30e6a6cfc41feb5</hash>
+         <hash>4360272cb5e08614a24cc7ec5db1720d82d46f6a48fb25adc6d22e2b67ed07ed</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>

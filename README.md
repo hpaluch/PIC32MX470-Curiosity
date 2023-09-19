@@ -55,6 +55,12 @@ Links for CPU [PIC32MX470F512H][PIC32MX470F512H]
 
 # Hardware setup
 
+Required hardware:
+* [PIC32MX470-Curiosity DM320103][DM320103] development board
+* [PIC32 Audio Codec Daughter Board WM8904 AC328904][AC328904] inserted on X32 connector of
+  development board
+
+
 Ensure that Jumpers are in these default positions -
 see [PIC32MX470 Curiosity Development Board User’s Guide][DS70005283B]
 for details:
@@ -65,6 +71,16 @@ Power Jumper `J8`:
 External/internal Debugger Jumper `J2`:
 - Pins 1-2 and 3-4 shorted (using single rectangular Jumper)
 
+Audio Codec setup:
+- All Jumpers on Audio card (J6,J7,J8,J9) should be on right position
+  (where is small white circle) to use I2S1 signals (only these are connected on
+  MX470 Curiosity board)
+- Codec card has to be properly inserted to X32 slots of Curiosity mainboard
+  (there are 2 connectors that must properly match)
+
+Important information on Audio Codec Daughter card:
+- codec [WM8904][WM8904] and [WM8904 Datasheet][WM8904DS]
+
 Connecting board to USB:
 - use `USB mini-B (J3)`
 - it is located at Left BOTTOM of board (!)
@@ -72,6 +88,7 @@ Connecting board to USB:
 - NOTE: That Left-top micro-USB connector is for USB connection
   to PIC32MX! (that can work both as Host and/or as Device) using recent
   USB OTG (On-The-Go) protocol.
+
 
 # Available peripherals
 
@@ -136,9 +153,18 @@ for SAME70: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
 
 Status: Finally It Works properly!
 
+Current function:
+- produces 1 kHz Sine waveform on WM8904 Codec Headphones stereo output
+- S1 switch can be used to (un)mute audio output. When muted,
+  orange LED3 is On.
+- green LED2 Toggles on every "DMA Complete" interrupt.
+- red LED1 is On in case of fatal error.
+- RGB LED is Red or Magenta on fatal exception.
+- various Debug and status messages on UART (mikroBus 1, pin TX -> PIC output, PC input),
+  speed 115200 Baud, 8-bit data, 1 stop bit, no parity, no flow control
+
 Important manual fixes to code Generated with MCC Tool:
 - [fix LRCLK I2S polarity](../../commit/6d2b5d4a2c0c737ab02698ee6461a4bc9aedbac5)
-
 
 2023-09-19:
 - fixed latency (caused extra 0 sample inserted on DMA start) by
@@ -280,18 +306,6 @@ Current diagnostics:
 - I2C with Digilent Analog Discovery 2
 - Init sequence: 0x1A write 0x00 ACK, 0xFF ACK,0xFF ACK, STOP
 
-
-Required hardware:
-* [PIC32MX470-Curiosity DM320103][DM320103] development board
-* [PIC32 Audio Codec Daughter Board WM8904 AC328904][AC328904] inserted on X32 connector of
-  development board
-
-NOTE: All Jumpers on Audio card (J6,J7,J8,J9) should be on right position
-(where is small white circle) to use I2S1 signals (only these are connected on
-MX470 Curiosity board)
- 
-Important information on Audio Codec Daughter card:
-- codec [WM8904][WM8904] and [WM8904 Datasheet][WM8904DS]
 
 
 | CPU pin | Curiosity Pin J14 | Curiosity Signal J14 | Board signal | WM8904 Pin | WM8904 Signal |

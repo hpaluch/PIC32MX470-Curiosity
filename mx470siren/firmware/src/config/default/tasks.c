@@ -88,9 +88,6 @@ void SYS_Tasks ( void )
         /* Call Application task APP. */
     APP_Tasks();
 
-    /* Call Application task APP_S1LED. */
-    APP_S1LED_Tasks();
-
 
 
 

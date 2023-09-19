@@ -402,7 +402,6 @@ void SYS_Initialize ( void* data )
 
     /* MISRAC 2012 deviation block end */
     APP_Initialize();
-    APP_S1LED_Initialize();
 
 
     EVIC_Initialize();
