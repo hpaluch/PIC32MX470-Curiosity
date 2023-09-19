@@ -110,6 +110,7 @@ typedef struct
     uint32_t sampleRate;
     uint32_t frequency;
     AUDIO_CODEC_DATA codecData;
+    bool firstFill;
 } APP_DATA;
 
 // *****************************************************************************

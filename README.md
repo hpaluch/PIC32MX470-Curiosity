@@ -1,12 +1,22 @@
 # Getting started with PIC32MX470-Curiosity
 
-> Latest news!
-> As of 2023-09-15. It really beeps! Please
-> see project No 2 below for details and also [mx470siren/](mx470siren)
-> folder- it is not yet siren, because
-> I'm totally exhausted, but someday it will be....
->
-> There are few remaining issues described in chapter below
+Here is my first Audio project that uses PIC32MX470 CPU (MIP32 M4K from Microchip)
+and WM8904 Audio codec.
+
+Here is scope (`Digilent Analog Discovery 2`) connected to Headphones outputs (both
+channels) and few digital signals:
+
+![PIC32MX470 and WM8904 Audio output - fixed](assets/wm8904/i2s/fixed/scope-audio-fixed.gif)
+
+And here detail of I2S signals (that transmit digital Audio). It is important that next DMA transfer
+starts before new I2S frame - otherwise extra 0 sample will be inserted and will cause noticeable
+clicks in sound:
+
+![PIC32MX470 and WM8904 I2S output - fixed](assets/wm8904/i2s/fixed/scope-i2s-fixed.gif)
+
+And `Digilent WaveForms` Workspace file:
+- [assets/wm8904/i2s/fixed/MX470-Curiosity-siren-i2s-bclk-analog-trigger.dwf3work](assets/wm8904/i2s/fixed/MX470-Curiosity-siren-i2s-bclk-analog-trigger.dwf3work)
+
 
 I recently acquired:
 
@@ -116,7 +126,7 @@ resonator clock to 1 Mhz and outputs it on OC1 pin.
 Please see dedicated [mx470osctest/](mx470osctest/)
 
 
-## Project No. 2 - Siren
+## Project No. 2 - Audio tone (1 kHz Sine)
 
 The goal is to produce two tone siren on Headphones Output of Audio Coded Daughter card. It is an adventurous attempt to reproduce project
 for SAME70: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
@@ -124,7 +134,12 @@ for SAME70: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
   all components and their binding, because such Template is empty for
   PIC32MX
 
-Status: It Beeps! (produces sine waveform on headphones output).
+Status: Finally It Works!
+
+2023-09-19:
+- fixed latency (caused extra 0 sample inserted on DMA start) by
+  adding 2nd DMA buffer to Queue right after 1st buffer (do not wait for "DMA Complete" interrupt.
+- this fixed also clicking issue.
 
 2023-09-17:
 - it generally works (produces 1 kHz sine output on headphones),
@@ -332,8 +347,6 @@ This time I got following error:
   error: 'PORTA' undeclared (first use in this function); did you mean 'PORTG'?
      volatile uint32_t ret = ((PORTA >> 0) & 0x1);
 ```
-
-
 
 [Harmony WM8904 Example]: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
 [WM8904DS]: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf

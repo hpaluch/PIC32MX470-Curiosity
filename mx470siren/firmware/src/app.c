@@ -175,6 +175,7 @@ void APP_Initialize ( void )
     _audioCodecInitialize (&appData.codecData);
     appData.frequency = APP_FREQUENCY;      // e.g. 1 kHz
     appData.pingPong = 1;
+    appData.firstFill = true; // do not wait for DMA interrupt on 1st fill
     SYS_CONSOLE_PRINT("%s:%d Done. %s().\r\n", APP_FILE, __LINE__, __func__);
 }
 
@@ -316,6 +317,15 @@ void APP_Tasks ( void )
                     DRV_CODEC_MuteOff(appData.codecData.handle);
                     SYS_CONSOLE_PRINT("%s:%d Output Active\r\n",APP_FILE,__LINE__);
                 }
+            }
+            // If it's first buffer fill, do not wait for "DMA complete' Interrupt,
+            // but rather immediately add 2nd buffer to Queue
+            // to reduce DMA latency: when there is more than one buffer
+            // in Queue it will be setup directly from DMA Interrupt handler,
+            // instead of polling (SYS_APP...) which is important speed up.
+            if (appData.firstFill && appData.state == APP_STATE_CODEC_WAIT_FOR_BUFFER_COMPLETE ){
+                appData.firstFill = false;
+                appData.state = APP_STATE_CODEC_ADD_BUFFER;
             }
         }
         break;
