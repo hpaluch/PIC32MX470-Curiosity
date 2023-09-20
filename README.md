@@ -366,6 +366,17 @@ This time I got following error:
      volatile uint32_t ret = ((PORTA >> 0) & 0x1);
 ```
 
+# Resources
+
+While looking for Temperature sensor applications (!) I have
+found even more simplistic Tone generator version for SAM:
+- https://github.com/Microchip-MPLAB-Harmony/audio_apps/blob/master/apps/simple_tone_generator/firmware/src/app.c
+- it is clear that above source was copy & pasted from Temperature sensor
+  source...
+- however it is not much practical in most cases because it uses polling for
+  I2S. But there are some trivial cases where it can be good enough, like
+  simple signal generators...
+
 [Harmony WM8904 Example]: https://github.com/Microchip-MPLAB-Harmony/audio/wiki/quick_start
 [WM8904DS]: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf
 [WM8904]: https://www.cirrus.com/products/wm8904/ 
